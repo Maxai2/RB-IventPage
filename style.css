@@ -22,3 +22,8 @@ body .ctLets {
   top: 63%;
   left: 48%;
 }
+body .bPageClass {
+  position: fixed;
+  top: 40%;
+  left: 40%;
+}
