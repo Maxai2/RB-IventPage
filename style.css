@@ -26,7 +26,12 @@ body .bPageClass {
   background-color: white;
   width: 500px;
   position: fixed;
-  top: 30%;
+  top: 20%;
   left: 30%;
   padding: 20px;
+}
+body .bPageClass .formContainer {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  margin: 5px;
 }
