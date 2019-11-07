@@ -82,6 +82,51 @@
                     <label>Children zone: </label>
                     <input type="checkbox" id="isChildrenZone">
                 </div>
+                <div class="formContainer">
+                    <label>Max reserve day: </label>
+                    <input type="number" id="maxReserveDay">
+                </div>
+                <div>
+                    <label>Numbers: </label>
+                    <div id="idNumberContainer">
+                        <div class="numberContainer">
+                            <select id="selNum1">
+                            </select>
+                            <input type="text" id="number1">
+                            <button onclick="addNumber()">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label>Сuisines: </label>
+                    <div id="idCuisineContainer"> 
+                        <div>
+                            <select id="selCuis1">
+                            </select>
+                            <button onclick="addCuisine()">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label>Payment types: </label>
+                    <div id="idPaymentTypeContainer">
+                        <div>
+                            <select id="selPayT1">
+                            </select>
+                            <button onclick="addPaymentType()">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label>Restaurant type: </label>
+                    <div id="idRestaurantTypeContainer">
+                        <div>
+                            <select id="selRestT1">
+                            </select>
+                            <button onclick="addRestaurantType()">+</button>
+                        </div>
+                    </div>
+                </div>
                 <div>
                     <label>Additional info:</label>
                     <textarea id="additionalInfo"></textarea>
