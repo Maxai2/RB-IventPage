@@ -124,10 +124,24 @@ var restaurantTypeArr = [
 ];
 var countRestaurantType = 1;
 
+var maxLat = Math.atan(Math.sinh(Math.PI)) * 180 / Math.PI;
+
+var map = 0;
+
 function start() {
     document.getElementById("fPage").style.display = "none"
 
     document.getElementById("bPage").style.display = "block";
+
+    var center = new google.maps.LatLng(0, 0);
+
+    var mapOptions = {
+        zoom: 3,
+        center: center,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
     var selNum = document.getElementById("selNum1");
 
@@ -385,4 +399,46 @@ function deleteRestaurantType() {
 
     divPar.removeChild(div);
     countRestaurantType--;
+}
+
+function findByCoord() {
+    // Get lat and lng values from input fields
+    var lat = document.getElementById('lat').value;
+    var lng = document.getElementById('long').value;
+
+    // Validate user input as numbers
+    lat = (!isNumber(lat) ? 0 : lat);
+    lng = (!isNumber(lng) ? 0 : lng);
+
+    // Validate user input as valid lat/lng values
+    lat = latRange(lat);
+    lng = lngRange(lng);
+
+    // Replace input values
+    document.getElementById('lat').value = lat;
+    document.getElementById('lng').value = lng;
+
+    // Create LatLng object
+    var mapCenter = new google.maps.LatLng(lat, lng);
+    
+    new google.maps.Marker({
+        position: mapCenter,
+        title: 'Marker title',
+        map: map
+    });
+
+    // Center map
+    map.setCenter(mapCenter);
+}
+
+function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+function latRange(n) {
+    return Math.min(Math.max(parseInt(n), -maxLat), maxLat);
+}
+
+function lngRange(n) {
+    return Math.min(Math.max(parseInt(n), -180), 180);
 }

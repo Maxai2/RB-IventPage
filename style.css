@@ -37,3 +37,6 @@ body .bPageClass .formContainer {
   grid-template-columns: 100px 1fr;
   margin: 5px;
 }
+body .bPageClass #map-canvas {
+  height: 200px;
+}
