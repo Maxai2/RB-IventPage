@@ -33,8 +33,6 @@ body .bPageClass {
   padding: 20px;
 }
 body .bPageClass .formContainer {
-  display: grid;
-  grid-template-columns: 100px 1fr;
   margin: 5px;
 }
 body .bPageClass #map-canvas {

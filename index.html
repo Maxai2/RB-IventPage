@@ -19,11 +19,11 @@
             <button class="ctLets" type="button" onclick="start()">Let's Start</button>
         </div>
 
-        <div id="bPage" class="bPageClass" style="display: none;">
+        <form id="bPage" method="GET" onsubmit="save()" name="newClient" class="bPageClass" style="display: none;">
             <div class="mainInfoContainer">
                 <div class="formContainer">
                     <label>Name: </label>
-                    <input type="text" id="name">
+                    <input type="text" id="name" name="name">
                 </div>
                 <div class="formContainer">
                     <label>Email: </label>
@@ -54,11 +54,11 @@
             <hr/>
             <div class="timeContainer">
                 <div class="formContainer">
-                    <label>Start time: </label> <!--open-->
+                    <label>Open time: </label> <!--open-->
                     <input type="number" id="openTime">
                 </div>
                 <div class="formContainer">
-                    <label>End time: </label> <!--close-->
+                    <label>Close time: </label> <!--close-->
                     <input type="number" id="closeTime">
                 </div>
             </div>
@@ -73,8 +73,16 @@
                     <input type="checkbox" id="isWifi">
                 </div>
                 <div class="formContainer">
-                    <label>Live Music: </label>
-                    <input type="checkbox" id="isLiveMusic">
+                    <label>Music: </label> <br>
+                    <label>
+                        <input type="radio" name="isLiveMusic" id="isLiveMusic" value="null"> No <br>
+                    </label>
+                    <label>
+                        <input type="radio" name="isLiveMusic" id="isLiveMusic" value="true"> Background <br>
+                    </label>
+                    <label>
+                        <input type="radio" name="isLiveMusic" id="isLiveMusic" value="false"> Live 
+                    </label>
                 </div>
                 <div class="formContainer">
                     <label>Open space: </label>
@@ -92,8 +100,7 @@
                     <label>Numbers: </label>
                     <div id="idNumberContainer">
                         <div class="numberContainer">
-                            <select id="selNum1">
-                            </select>
+                            <label>+994</label>
                             <input type="text" id="number1">
                             <button onclick="addNumber()">+</button>
                         </div>
@@ -130,14 +137,23 @@
                     </div>
                 </div>
                 <div>
+                    <label>Social links: </label>
+                    <div id="idSocialLinksContainer">
+                        <div>
+                            <input type="text" id="socLink1">
+                            <button onclick="addSocLink()">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div>
                     <label>Additional info:</label>
                     <textarea id="additionalInfo"></textarea>
                 </div>
             </div>
             <hr/>
-            <button onclick="save()">Save</button>
+            <button type="submit">Save</button>
             <button onclick="cancel()">Cancel</button>
-        </div>
+        </form>
  
     </div>
 </body>

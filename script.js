@@ -1,17 +1,11 @@
-class Number {
-    constructor(type, number) {
-        this.type = type;
-        this.number = number;
-    }
-}
-
 class Client {
-    numbers = [];
-    cuisines = [];
-    paymentTypes = [];
-    restaurantTypes = [];
+    phones = [];
+    cuisinesIds = [];
+    paymentTypeIds = [];
+    clientTypeIds = [];
+    socialLinks = [];
 
-    constructor(name, email, address, mainImage, lat, long, openTime, closeTime, isParking, isWifi, isLiveMusic, isOpenSpace, isChildrenZone, additionalInfo, maxReserveDay, numbers, cuisines, paymentTypes, restaurantTypes) {
+    constructor(name, email, address, mainImage, lat, long, openTime, closeTime, isParking, isWifi, isLiveMusic, isOpenSpace, isChildrenZone, additionalInfo, maxReserveDay, phones, cuisinesIds, paymentTypeIds, clientTypeIds, socialLinks) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -27,17 +21,14 @@ class Client {
         this.isChildrenZone = isChildrenZone;
         this.additionalInfo = additionalInfo;
         this.maxReserveDay = maxReserveDay;
-        this.numbers = numbers;
-        this.cuisines = cuisines;
-        this.paymentTypes = paymentTypes;
-        this.restaurantTypes = restaurantTypes;
+        this.phones = phones;
+        this.cuisinesIds = cuisinesIds;
+        this.paymentTypeIds = paymentTypeIds;
+        this.clientTypeIds = clientTypeIds;
+        this.socialLinks = socialLinks;
     }
 }
 
-var numberTypeArr = [
-    "Mobile",
-    "Work"
-];
 var countNumbers = 1;
 
 var cuisinesArr = [
@@ -124,35 +115,30 @@ var restaurantTypeArr = [
 ];
 var countRestaurantType = 1;
 
-var maxLat = Math.atan(Math.sinh(Math.PI)) * 180 / Math.PI;
+var countSocialLink = 1;
 
-var map = 0;
+// var maxLat = Math.atan(Math.sinh(Math.PI)) * 180 / Math.PI;
+
+// var map = 0;
 
 function start() {
     document.getElementById("fPage").style.display = "none"
 
     document.getElementById("bPage").style.display = "block";
 
-    var center = new google.maps.LatLng(0, 0);
+    // var center = new google.maps.LatLng(0, 0);
 
-    var mapOptions = {
-        zoom: 3,
-        center: center,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
+    // var mapOptions = {
+    //     zoom: 3,
+    //     center: center,
+    //     mapTypeId: google.maps.MapTypeId.ROADMAP
+    // };
 
-    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-    var selNum = document.getElementById("selNum1");
-
-    for (var i = 0; i < numberTypeArr.length; i++) {
-        var opt = document.createElement('option');
-        opt.text = numberTypeArr[i];
-
-        selNum.appendChild(opt);
-    }
+    // map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
     var selCuis = document.getElementById("selCuis1");
+
+    selCuis.options.length = 0;
 
     for (var i = 0; i < cuisinesArr.length; i++) {
         var opt = document.createElement('option');
@@ -163,6 +149,8 @@ function start() {
 
     var selPayT = document.getElementById("selPayT1");
 
+    selPayT.options.length = 0;
+
     for (var i = 0; i < paymentTypeArr.length; i++) {
         var opt = document.createElement('option');
         opt.text = paymentTypeArr[i];
@@ -171,6 +159,8 @@ function start() {
     }
 
     var selRestT = document.getElementById("selRestT1");
+
+    selRestT.options.length = 0;
 
     for (var i = 0; i < restaurantTypeArr.length; i++) {
         var opt = document.createElement('option');
@@ -187,31 +177,44 @@ function cancel() {
 }
 
 function save() {
-    var numbers = [];
+    event.preventDefault();
+
+    let form = document.getElementById("bPage");
+
+    let age = form.elements['name'].value;
+    console.log(age);
+
+    var phones = [];
 
     for(var i = 0; i < countNumbers; i++) {
-        numbers.push(new Number(document.getElementById("selNum" + (i + 1)).selectedIndex, document.getElementById("number" + (i + 1)).value));
+        phones.push("+994" + document.getElementById("number" + (i + 1)).value);
     }
 
-    var cuisines = [];
+    var cuisinesIds = [];
 
     for (var i = 0; i < countCuisines; i++) {
-        cuisines.push(document.getElementById("selCuis" + (i + 1)).selectedIndex);
+        cuisinesIds.push(document.getElementById("selCuis" + (i + 1)).selectedIndex);
     }
 
-    var paymentTypes = [];
+    var paymentTypeIds = [];
 
     for (var i = 0; i < countPaymentType; i++) {
-        paymentTypes.push(document.getElementById("selPayT" + (i + 1)).selectedIndex);
+        paymentTypeIds.push(document.getElementById("selPayT" + (i + 1)).selectedIndex);
     }
 
-    var restaurantTypes = [];
+    var clientTypeIds = [];
 
     for (var i = 0; i < countRestaurantType; i++) {
-        restaurantTypes.push(document.getElementById("selRestT" + (i + 1)).selectedIndex);
+        clientTypeIds.push(document.getElementById("selRestT" + (i + 1)).selectedIndex);
     }
 
-    var cl = new Client(document.getElementById("name").value, document.getElementById("email").value, document.getElementById("address").value, document.getElementById("mainImage").value, document.getElementById("lat").value, document.getElementById("long").value, document.getElementById("openTime").value, document.getElementById("closeTime").value, document.getElementById("isParking").checked, document.getElementById("isWifi").checked, document.getElementById("isLiveMusic").checked, document.getElementById("isOpenSpace").checked, document.getElementById("isChildrenZone").checked, document.getElementById("additionalInfo").value, document.getElementById("maxReserveDay").value, numbers, cuisines, paymentTypes, restaurantTypes);
+    var socialLinks = [];
+
+    for (var i = 0; i < countSocialLink; i++) {
+        socialLinks.push(document.getElementById("socLink" + (i + 1)).value);
+    }
+
+    var cl = new Client(document.getElementById("name").value, document.getElementById("email").value, document.getElementById("address").value, document.getElementById("mainImage").value, document.getElementById("lat").value, document.getElementById("long").value, document.getElementById("openTime").value, document.getElementById("closeTime").value, document.getElementById("isParking").checked, document.getElementById("isWifi").checked, document.getElementById("isLiveMusic").checked, document.getElementById("isOpenSpace").checked, document.getElementById("isChildrenZone").checked, document.getElementById("additionalInfo").value, document.getElementById("maxReserveDay").value, phones, cuisinesIds, paymentTypeIds, clientTypeIds, socialLinks);
 
     var str = JSON.stringify(cl);
     console.log(str);
@@ -225,18 +228,10 @@ function addNumber() {
     var divId = "divNum" + ++countNumbers;
     div.setAttribute('id', divId);
     
-    var select = document.createElement('select');
-    var sel = "selNum" + countNumbers;
-    select.setAttribute('id', sel);
+    var label = document.createElement('label');
+    label.textContent = "+994";
     
-    for (var i = 0; i < numberTypeArr.length; i++) {
-        var opt = document.createElement('option');
-        opt.text = numberTypeArr[i];
-
-        select.appendChild(opt);
-    }
-    
-    div.appendChild(select);
+    div.appendChild(label);
     
     var input = document.createElement('input');
     input.type = "text";
@@ -399,6 +394,43 @@ function deleteRestaurantType() {
 
     divPar.removeChild(div);
     countRestaurantType--;
+}
+
+function addSocLink() {
+    var divSocLink = document.getElementById("idSocialLinksContainer");
+
+    var div = document.createElement('div');
+    var divId = "divSocLink" + ++countSocialLink;
+    div.setAttribute('id', divId);
+
+    var input = document.createElement('input');
+    input.setAttribute('id', "socLink" + countSocialLink);
+    input.type = "text";
+
+    div.appendChild(input);
+
+    var buttonA = document.createElement('button');
+    buttonA.innerHTML = "+";
+    buttonA.addEventListener("click", addSocLink);
+
+    div.appendChild(buttonA);
+
+    var buttonD = document.createElement('button');
+    buttonD.innerHTML = "-";
+    buttonD.setAttribute('id', countSocialLink);
+    buttonD.addEventListener("click", deleteSocLink);
+
+    div.appendChild(buttonD);
+
+    divSocLink.appendChild(div);
+}
+
+function deleteSocLink() {
+    var divPar = document.getElementById("idSocialLinksContainer");
+    var div = document.getElementById("divSocLink" + this.getAttribute('id'));
+
+    divPar.removeChild(div);
+    countSocialLink--;
 }
 
 function findByCoord() {
