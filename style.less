@@ -1,13 +1,12 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(to right, #FE9F6C, #E41C66);
     font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 
     .startClass {
         width: 500px;
-        margin-left: 200px;
-        margin-top: 50px;
+        margin: 0 auto;
+        padding-top: 50px;
 
         h1 {
             font-weight: normal;
@@ -28,21 +27,23 @@ body {
         }
     }
 
-    .chipsContainerClass {
-        margin-top: 50px;
+    .chipsContainerClass {  
+        background-image: linear-gradient(to right, #FE9F6C, #E41C66);
 
         h2 { 
             color: white;
             text-align: center;
             font-size: 30px;
             margin: 10px;
+            font-weight: normal;
         }
 
         h4 {
             color: white;
             margin: auto;
             max-width: 500px;
-            text-align: center;
+            text-align: center; 
+            font-weight: normal;
         }
     
         .chipsClass {
@@ -71,7 +72,8 @@ body {
     .appLinkClass {
         display: flex;
         flex-direction: row;
-        margin: 0 200px;
+        margin: 0 auto;
+        width: 1000px;
 
         #logo {
             content: url(logo.png);
@@ -83,7 +85,7 @@ body {
             grid-template-rows: auto auto;
 
             span {
-                margin: 0 20px;
+                margin-top: 30px;
             }
 
             a {
@@ -105,6 +107,7 @@ body {
             text-align: center;
             font-weight: normal;
             padding: 10px;
+            margin: 0;
         }
     }
 
@@ -123,7 +126,7 @@ body {
                 flex-direction: column;
                 margin: 5px;
 
-                input {
+                input[type=text] {
                     width: auto;
                 }
 
@@ -132,6 +135,9 @@ body {
             button[type=submit] {
                 background-image: linear-gradient(to right, #FE9F6C, #E41C66);
                 border: none;
+                color: white;
+                padding: 5px 50px;
+                    font-size: 20px;
             }
         }
     }
@@ -139,10 +145,12 @@ body {
     .copyrightClass {
         background-image: linear-gradient(to right, #FE9F6C, #E41C66);
 
-        h5 {
+        h4 {
             color: white;
             text-align: center;
             font-weight: normal;
+            margin: 0;
+            padding: 5px;
         }
     }
 }

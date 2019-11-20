@@ -1,13 +1,12 @@
 body {
   margin: 0;
   padding: 0;
-  background-image: linear-gradient(to right, #FE9F6C, #E41C66);
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 body .startClass {
   width: 500px;
-  margin-left: 200px;
-  margin-top: 50px;
+  margin: 0 auto;
+  padding-top: 50px;
 }
 body .startClass h1 {
   font-weight: normal;
@@ -25,19 +24,21 @@ body .startClass button {
   font-size: 20px;
 }
 body .chipsContainerClass {
-  margin-top: 50px;
+  background-image: linear-gradient(to right, #FE9F6C, #E41C66);
 }
 body .chipsContainerClass h2 {
   color: white;
   text-align: center;
   font-size: 30px;
   margin: 10px;
+  font-weight: normal;
 }
 body .chipsContainerClass h4 {
   color: white;
   margin: auto;
   max-width: 500px;
   text-align: center;
+  font-weight: normal;
 }
 body .chipsContainerClass .chipsClass {
   background: transparent;
@@ -61,7 +62,8 @@ body .chipsContainerClass .chipsClass .chipContClass div {
 body .appLinkClass {
   display: flex;
   flex-direction: row;
-  margin: 0 200px;
+  margin: 0 auto;
+  width: 1000px;
 }
 body .appLinkClass #logo {
   content: url(logo.png);
@@ -72,7 +74,7 @@ body .appLinkClass div {
   grid-template-rows: auto auto;
 }
 body .appLinkClass div span {
-  margin: 0 20px;
+  margin-top: 30px;
 }
 body .appLinkClass div a {
   margin: auto auto;
@@ -89,6 +91,7 @@ body .clRegClass h2 {
   text-align: center;
   font-weight: normal;
   padding: 10px;
+  margin: 0;
 }
 body .clientFormClass {
   background-image: url(formBckg.png);
@@ -105,18 +108,23 @@ body .clientFormClass form .formContainer {
   flex-direction: column;
   margin: 5px;
 }
-body .clientFormClass form .formContainer input {
+body .clientFormClass form .formContainer input[type=text] {
   width: auto;
 }
 body .clientFormClass form button[type=submit] {
   background-image: linear-gradient(to right, #FE9F6C, #E41C66);
   border: none;
+  color: white;
+  padding: 5px 50px;
+  font-size: 20px;
 }
 body .copyrightClass {
   background-image: linear-gradient(to right, #FE9F6C, #E41C66);
 }
-body .copyrightClass h5 {
+body .copyrightClass h4 {
   color: white;
   text-align: center;
   font-weight: normal;
+  margin: 0;
+  padding: 5px;
 }
