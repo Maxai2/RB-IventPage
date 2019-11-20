@@ -1,46 +1,143 @@
 body {
-    height: 100%;
     margin: 0;
+    background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+    font-family: Century Gothic,CenturyGothic,AppleGothic,sans-serif;
 
-    img {
-        filter: blur(8px);
-        -webkit-filter: blur(8px);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-    } 
-
-    p {
-        height: 100px;
-        width: 400px;
-        position: fixed;
-        top: 40%;
-        left: 40%;
-    }
-
-    .ctLets {
-        position: fixed;
-        top: 63%;
-        left: 48%;
-    }
-
-    .bPageClass {
-        background-color: white;
+    .startClass {
         width: 500px;
-        height: 600px;
-        overflow: auto;
-        position: fixed;
-        top: 10%;
-        left: 30%;
-        padding: 20px;
+        margin-left: 200px;
+        margin-top: 50px;
 
-        .formContainer {
-            margin: 5px;
+        a {
+            color: #E41C66;
+            border-bottom: 1px dotted #E41C66;
+            text-decoration: none;
         }
 
-        #map-canvas {
-            height: 200px;
+        button {
+            background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+            border: none;
+            color: white;
+            padding: 5px 50px;
+            font-size: 20px;
+        }
+    }
+
+    .chipsContainerClass {
+        margin-top: 50px;
+
+        h2 { 
+            color: white;
+            text-align: center;
+            font-size: 30px;
+            margin: 10px;
+        }
+
+        h4 {
+            color: white;
+            margin: auto;
+            max-width: 500px;
+            text-align: center;
+        }
+    
+        .chipsClass {
+            background: transparent;
+            padding: 30px;
+            width: 800px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: auto auto auto;
+
+            .chipContClass {
+                background: white;
+                margin: 10px;
+                padding: 30px;
+
+                div {
+                    border: 2px solid #E41C66;
+                    width: 60px;
+                    height: 70px;
+                    margin: auto auto 15px auto;
+                }
+            }
+        }
+    }
+    
+    .appLinkClass {
+        display: flex;
+        flex-direction: row;
+        margin: 0 200px;
+
+        #logo {
+            content: url(logo.png);
+            width: 200px;
+        }
+
+        div {
+            display: grid;
+            grid-template-rows: auto auto;
+
+            span {
+                margin: 0 20px;
+            }
+
+            a {
+               margin: auto auto;
+
+                #playMarketLink {
+                    content: url(appMarketLink.png);
+                    width: 100px;
+                }
+            }
+        }
+    }
+
+    .clRegClass {
+        background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+
+        h2 {
+            color: white;
+            text-align: center;
+            font-weight: normal;
+            padding: 10px;
+        }
+    }
+
+    .clientFormClass {
+        background-image: url(formBckg.png);
+        background-repeat: round;
+
+        form {
+            margin: 0 auto;
+            width: 500px;
+            background: #F2EDED;
+            padding: 15px 70px;
+
+            .formContainer {
+                display: flex;
+                flex-direction: column;
+                margin: 5px;
+
+                input {
+                    width: auto;
+                }
+
+            }
+
+            button[type=submit] {
+                background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+                border: none;
+            }
+        }
+    }
+
+    .copyrightClass {
+        background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+
+        h5 {
+            color: white;
+            text-align: center;
+            font-weight: normal;
         }
     }
 }

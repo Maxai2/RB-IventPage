@@ -1,40 +1,118 @@
 body {
-  height: 100%;
   margin: 0;
+  background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
-body img {
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-}
-body p {
-  height: 100px;
-  width: 400px;
-  position: fixed;
-  top: 40%;
-  left: 40%;
-}
-body .ctLets {
-  position: fixed;
-  top: 63%;
-  left: 48%;
-}
-body .bPageClass {
-  background-color: white;
+body .startClass {
   width: 500px;
-  height: 600px;
-  overflow: auto;
-  position: fixed;
-  top: 10%;
-  left: 30%;
-  padding: 20px;
+  margin-left: 200px;
+  margin-top: 50px;
 }
-body .bPageClass .formContainer {
+body .startClass a {
+  color: #E41C66;
+  border-bottom: 1px dotted #E41C66;
+  text-decoration: none;
+}
+body .startClass button {
+  background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+  border: none;
+  color: white;
+  padding: 5px 50px;
+  font-size: 20px;
+}
+body .chipsContainerClass {
+  margin-top: 50px;
+}
+body .chipsContainerClass h2 {
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  margin: 10px;
+}
+body .chipsContainerClass h4 {
+  color: white;
+  margin: auto;
+  max-width: 500px;
+  text-align: center;
+}
+body .chipsContainerClass .chipsClass {
+  background: transparent;
+  padding: 30px;
+  width: 800px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+body .chipsContainerClass .chipsClass .chipContClass {
+  background: white;
+  margin: 10px;
+  padding: 30px;
+}
+body .chipsContainerClass .chipsClass .chipContClass div {
+  border: 2px solid #E41C66;
+  width: 60px;
+  height: 70px;
+  margin: auto auto 15px auto;
+}
+body .appLinkClass {
+  display: flex;
+  flex-direction: row;
+  margin: 0 200px;
+}
+body .appLinkClass #logo {
+  content: url(logo.png);
+  width: 200px;
+}
+body .appLinkClass div {
+  display: grid;
+  grid-template-rows: auto auto;
+}
+body .appLinkClass div span {
+  margin: 0 20px;
+}
+body .appLinkClass div a {
+  margin: auto auto;
+}
+body .appLinkClass div a #playMarketLink {
+  content: url(appMarketLink.png);
+  width: 100px;
+}
+body .clRegClass {
+  background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+}
+body .clRegClass h2 {
+  color: white;
+  text-align: center;
+  font-weight: normal;
+  padding: 10px;
+}
+body .clientFormClass {
+  background-image: url(formBckg.png);
+  background-repeat: round;
+}
+body .clientFormClass form {
+  margin: 0 auto;
+  width: 500px;
+  background: #F2EDED;
+  padding: 15px 70px;
+}
+body .clientFormClass form .formContainer {
+  display: flex;
+  flex-direction: column;
   margin: 5px;
 }
-body .bPageClass #map-canvas {
-  height: 200px;
+body .clientFormClass form .formContainer input {
+  width: auto;
+}
+body .clientFormClass form button[type=submit] {
+  background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+  border: none;
+}
+body .copyrightClass {
+  background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+}
+body .copyrightClass h5 {
+  color: white;
+  text-align: center;
+  font-weight: normal;
 }

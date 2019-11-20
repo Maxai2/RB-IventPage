@@ -1,11 +1,19 @@
+class Phone {
+    constructor(number, isShow) {
+        this.number = number;
+        this.isShow = isShow;
+    }
+}
+
 class Client {
     phones = [];
     cuisinesIds = [];
     paymentTypeIds = [];
     clientTypeIds = [];
+    mealTypeIds = [];
     socialLinks = [];
 
-    constructor(name, email, address, mainImage, lat, long, openTime, closeTime, isParking, isWifi, isLiveMusic, isOpenSpace, isChildrenZone, additionalInfo, maxReserveDay, phones, cuisinesIds, paymentTypeIds, clientTypeIds, socialLinks) {
+    constructor(name, email, address, mainImage, lat, long, openTime, closeTime, isParking, isWifi, isLiveMusic, isOpenSpace, isChildrenZone, isBusinessLunch, additionalInfo, maxReserveDay, phones, cuisinesIds, paymentTypeIds, clientTypeIds, mealTypeIds, socialLinks) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -16,15 +24,17 @@ class Client {
         this.closeTime = closeTime;
         this.isParking = isParking;
         this.isWifi = isWifi;
-        this.isLiveMusic = isLiveMusic;
         this.isOpenSpace = isOpenSpace;
         this.isChildrenZone = isChildrenZone;
+        this.isBusinessLunch = isBusinessLunch;
         this.additionalInfo = additionalInfo;
         this.maxReserveDay = maxReserveDay;
         this.phones = phones;
+        this.isLiveMusic = isLiveMusic;
         this.cuisinesIds = cuisinesIds;
         this.paymentTypeIds = paymentTypeIds;
         this.clientTypeIds = clientTypeIds;
+        this.mealTypeIds = mealTypeIds;
         this.socialLinks = socialLinks;
     }
 }
@@ -117,14 +127,30 @@ var countRestaurantType = 1;
 
 var countSocialLink = 1;
 
+var mealTypeArr = [
+    "Breakfast",
+    "Lunch",
+    "Dinner",
+    "Coffee & Tea",
+    "Night Life",
+    "Things to do"
+];
+var countMealType = 1;
+
 // var maxLat = Math.atan(Math.sinh(Math.PI)) * 180 / Math.PI;
 
 // var map = 0;
 
-function start() {
-    document.getElementById("fPage").style.display = "none"
+function scrollToForm() {
+    var elem = document.getElementById("clForm");
 
-    document.getElementById("bPage").style.display = "block";
+    elem.scrollIntoView({block: "start", behavior: "smooth"});
+}
+
+function start() {
+    // document.getElementById("fPage").style.display = "none"
+
+    // document.getElementById("bPage").style.display = "block";
 
     // var center = new google.maps.LatLng(0, 0);
 
@@ -168,53 +194,92 @@ function start() {
 
         selRestT.appendChild(opt);
     }
+
+    var selMealT = document.getElementById("selMealT1");
+
+    selMealT.options.length = 0;
+
+    for (var i = 0; i < mealTypeArr.length; i++) {
+        var opt = document.createElement('option');
+        opt.text = mealTypeArr[i];
+
+        selMealT.appendChild(opt);
+    }
 }
 
-function cancel() {
-    document.getElementById("fPage").style.display = "block"
+// function cancel() {
+//     document.getElementById("fPage").style.display = "block"
 
-    document.getElementById("bPage").style.display = "none";
-}
+//     document.getElementById("bPage").style.display = "none";
+// }
 
 function save() {
     event.preventDefault();
 
     let form = document.getElementById("bPage");
 
-    let age = form.elements['name'].value;
-    console.log(age);
-
     var phones = [];
-
+    
     for(var i = 0; i < countNumbers; i++) {
-        phones.push("+994" + document.getElementById("number" + (i + 1)).value);
+        phones.push(new Phone("+994" + form.elements["number" + (i + 1)].value, form.elements["isShow" + (i + 1)].checked));
     }
+
+    // for(var i = 0; i < countNumbers; i++) {
+    //     phones.push(new Phone("+994" + document.getElementById("number" + (i + 1)).value, document.getElementById("isShow" + (i + 1)).checked));
+    // }
 
     var cuisinesIds = [];
 
     for (var i = 0; i < countCuisines; i++) {
-        cuisinesIds.push(document.getElementById("selCuis" + (i + 1)).selectedIndex);
+        cuisinesIds.push(form.elements["selCuis" + (i + 1)].selectedIndex);
     }
+
+    // for (var i = 0; i < countCuisines; i++) {
+    //     cuisinesIds.push(document.getElementById("selCuis" + (i + 1)).selectedIndex);
+    // }
 
     var paymentTypeIds = [];
 
     for (var i = 0; i < countPaymentType; i++) {
-        paymentTypeIds.push(document.getElementById("selPayT" + (i + 1)).selectedIndex);
+        paymentTypeIds.push(form.elements["selPayT" + (i + 1)].selectedIndex);
     }
+
+    // for (var i = 0; i < countPaymentType; i++) {
+    //     paymentTypeIds.push(document.getElementById("selPayT" + (i + 1)).selectedIndex);
+    // }
 
     var clientTypeIds = [];
 
     for (var i = 0; i < countRestaurantType; i++) {
-        clientTypeIds.push(document.getElementById("selRestT" + (i + 1)).selectedIndex);
+        clientTypeIds.push(form.elements["selRestT" + (i + 1)].selectedIndex);
     }
+
+    // for (var i = 0; i < countRestaurantType; i++) {
+    //     clientTypeIds.push(document.getElementById("selRestT" + (i + 1)).selectedIndex);
+    // }
+
+    var mealTypeIds = [];
+
+    for (var i = 0; i < countMealType; i++) {
+        mealTypeIds.push(form.elements["selMealT" + (i + 1)].selectedIndex);
+    }
+
+    // for (var i = 0; i < countMealType; i++) {
+    //     mealTypeIds.push(document.getElementById("selMealT" + (i + 1)).selectedIndex);
+    // }
 
     var socialLinks = [];
 
     for (var i = 0; i < countSocialLink; i++) {
-        socialLinks.push(document.getElementById("socLink" + (i + 1)).value);
+        socialLinks.push(form.elements["socLink" + (i + 1)].value);
     }
 
-    var cl = new Client(document.getElementById("name").value, document.getElementById("email").value, document.getElementById("address").value, document.getElementById("mainImage").value, document.getElementById("lat").value, document.getElementById("long").value, document.getElementById("openTime").value, document.getElementById("closeTime").value, document.getElementById("isParking").checked, document.getElementById("isWifi").checked, document.getElementById("isLiveMusic").checked, document.getElementById("isOpenSpace").checked, document.getElementById("isChildrenZone").checked, document.getElementById("additionalInfo").value, document.getElementById("maxReserveDay").value, phones, cuisinesIds, paymentTypeIds, clientTypeIds, socialLinks);
+    // for (var i = 0; i < countSocialLink; i++) {
+    //     socialLinks.push(document.getElementById("socLink" + (i + 1)).value);
+    // }
+
+    var cl = new Client(form.elements["name"].value, form.elements["email"].value, form.elements["address"].value, form.elements["mainImage"].value, form.elements["lat"].value, form.elements["long"].value, form.elements["openTime"].value, form.elements["closeTime"].value, form.elements["isParking"].checked, form.elements["isWifi"].checked, form.elements["isLiveMusic"].value, form.elements["isOpenSpace"].checked, form.elements["isChildrenZone"].checked, 
+    form.elements["isBusinessLunch"].checked, form.elements["additionalInfo"].value, form.elements["maxReserveDay"].value, phones, cuisinesIds, paymentTypeIds, clientTypeIds, mealTypeIds, socialLinks);
 
     var str = JSON.stringify(cl);
     console.log(str);
@@ -235,14 +300,29 @@ function addNumber() {
     
     var input = document.createElement('input');
     input.type = "text";
-    var num = "number" + countNumbers;
-    input.setAttribute('id', num);
+    var numIN = "number" + countNumbers;
+    input.setAttribute('id', numIN);
+    input.setAttribute('name', numIN);
 
     div.appendChild(input);
+
+    var labelShow = document.createElement('label');
+    labelShow.textContent = "Show for user: ";
+
+    div.appendChild(labelShow);
+
+    var inputShow = document.createElement('input');
+    var showIN = "isShow" + countNumbers;
+    inputShow.setAttribute('id', showIN);
+    inputShow.setAttribute('name', showIN);
+    inputShow.type = "checkbox";
+
+    div.appendChild(inputShow);
 
     var buttonA = document.createElement('button');
     buttonA.innerHTML = "+";
     buttonA.addEventListener("click", addNumber);
+    buttonA.type = "button";
 
     div.appendChild(buttonA);
 
@@ -250,6 +330,7 @@ function addNumber() {
     buttonD.innerHTML = "-";
     buttonD.setAttribute('id', countNumbers);
     buttonD.addEventListener("click", deleteNumber);
+    buttonD.type = "button";
 
     div.appendChild(buttonD);
 
@@ -272,8 +353,9 @@ function addCuisine() {
     div.setAttribute('id', divId);
 
     var select = document.createElement('select');
-    var sel = "selCuis" + countCuisines;
-    select.setAttribute('id', sel);
+    var selIN = "selCuis" + countCuisines;
+    select.setAttribute('id', selIN);
+    select.setAttribute('name', selIN);
 
     for (var i = 0; i < cuisinesArr.length; i++) {
         var opt = document.createElement('option');
@@ -287,6 +369,7 @@ function addCuisine() {
     var buttonA = document.createElement('button');
     buttonA.innerHTML = "+";
     buttonA.addEventListener("click", addCuisine);
+    buttonA.type = "button";
 
     div.appendChild(buttonA);
 
@@ -294,6 +377,7 @@ function addCuisine() {
     buttonD.innerHTML = "-";
     buttonD.setAttribute('id', countCuisines);
     buttonD.addEventListener("click", deleteCuisine);
+    buttonD.type = "button";
 
     div.appendChild(buttonD);
 
@@ -316,8 +400,9 @@ function addPaymentType() {
     div.setAttribute('id', divId);
 
     var select = document.createElement('select');
-    var sel = "selPayT" + countPaymentType;
+    var selIN = "selPayT" + countPaymentType;
     select.setAttribute('id', sel);
+    select.setAttribute('name', selIN);
 
     for (var i = 0; i < paymentTypeArr.length; i++) {
         var opt = document.createElement('option');
@@ -331,6 +416,7 @@ function addPaymentType() {
     var buttonA = document.createElement('button');
     buttonA.innerHTML = "+";
     buttonA.addEventListener("click", addPaymentType);
+    buttonA.type = "button";
 
     div.appendChild(buttonA);
 
@@ -338,6 +424,7 @@ function addPaymentType() {
     buttonD.innerHTML = "-";
     buttonD.setAttribute('id', countPaymentType);
     buttonD.addEventListener("click", deletePaymentType);
+    buttonD.type = "button";
 
     div.appendChild(buttonD);
 
@@ -360,8 +447,9 @@ function addRestaurantType() {
     div.setAttribute('id', divId);
 
     var select = document.createElement('select');
-    var sel = "selRestT" + countRestaurantType;
-    select.setAttribute('id', sel);
+    var selIN = "selRestT" + countRestaurantType;
+    select.setAttribute('id', selIN);
+    select.setAttribute('name', selIN);
 
     for (var i = 0; i < restaurantTypeArr.length; i++) {
         var opt = document.createElement('option');
@@ -375,6 +463,7 @@ function addRestaurantType() {
     var buttonA = document.createElement('button');
     buttonA.innerHTML = "+";
     buttonA.addEventListener("click", addRestaurantType);
+    buttonA.type = "button";
 
     div.appendChild(buttonA);
 
@@ -382,6 +471,7 @@ function addRestaurantType() {
     buttonD.innerHTML = "-";
     buttonD.setAttribute('id', countRestaurantType);
     buttonD.addEventListener("click", deleteRestaurantType);
+    buttonD.type = "button";
 
     div.appendChild(buttonD);
 
@@ -404,7 +494,9 @@ function addSocLink() {
     div.setAttribute('id', divId);
 
     var input = document.createElement('input');
-    input.setAttribute('id', "socLink" + countSocialLink);
+    var inpIN = "socLink" + countSocialLink;
+    input.setAttribute('id', inpIN);
+    input.setAttribute('name', inpIN);
     input.type = "text";
 
     div.appendChild(input);
@@ -412,6 +504,7 @@ function addSocLink() {
     var buttonA = document.createElement('button');
     buttonA.innerHTML = "+";
     buttonA.addEventListener("click", addSocLink);
+    buttonA.type = "button";
 
     div.appendChild(buttonA);
 
@@ -419,6 +512,7 @@ function addSocLink() {
     buttonD.innerHTML = "-";
     buttonD.setAttribute('id', countSocialLink);
     buttonD.addEventListener("click", deleteSocLink);
+    buttonD.type = "button";
 
     div.appendChild(buttonD);
 
@@ -431,6 +525,53 @@ function deleteSocLink() {
 
     divPar.removeChild(div);
     countSocialLink--;
+}
+
+function addMealType() {
+    var divMealT = document.getElementById("idMealTypeContainer");
+
+    var div = document.createElement('div');
+    var divId = "divMealT" + ++countMealType;
+    div.setAttribute('id', divId);
+
+    var sel = document.createElement('select');
+    var selIN = "selMealT" + countMealType;
+    sel.setAttribute('id', selIN);
+    sel.setAttribute('name', selIN);
+
+    for (var i = 0; i < mealTypeArr.length; i++) {
+        var opt = document.createElement('option');
+        opt.text = mealTypeArr[i];
+
+        sel.appendChild(opt);
+    }
+
+    div.appendChild(sel);
+
+    var buttonA = document.createElement('button');
+    buttonA.innerHTML = "+";
+    buttonA.addEventListener("click", addMealType);
+    buttonA.type = "button";
+
+    div.appendChild(buttonA);
+
+    var buttonD = document.createElement('button');
+    buttonD.innerHTML = "-";
+    buttonD.setAttribute('id', countMealType);
+    buttonD.addEventListener("click", deleteMealType);
+    buttonD.type = "button";
+
+    div.appendChild(buttonD);
+
+    divMealT.appendChild(div);
+}
+
+function deleteMealType() {
+    var divPar = document.getElementById("idMealTypeContainer");
+    var div = document.getElementById("divMealT" + this.getAttribute('id'));
+
+    divPar.removeChild(div);
+    countMealType--;
 }
 
 function findByCoord() {
