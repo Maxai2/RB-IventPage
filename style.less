@@ -5,8 +5,8 @@ body {
 
     .startClass {
         width: 500px;
-        margin: 0 auto;
         padding-top: 50px;
+        margin-left: 200px;
 
         h1 {
             font-weight: normal;
@@ -48,16 +48,17 @@ body {
     
         .chipsClass {
             background: transparent;
-            padding: 30px;
-            width: 800px;
-            margin: auto;
+            width: auto;
             display: grid;
             grid-template-columns: auto auto auto;
+            padding: 20px 0;
+            margin: 0 170px;
 
             .chipContClass {
                 background: white;
-                margin: 10px;
+                margin: 30px;
                 padding: 30px;
+                width: auto;
 
                 div {
                     border: 2px solid #E41C66;
@@ -116,29 +117,39 @@ body {
         background-repeat: round;
 
         form {
-            margin: 0 auto;
-            width: 500px;
-            background: #F2EDED;
-            padding: 15px 70px;
+            
+            .formDivCl {
+                margin: 0 auto;
+                width: 500px;
+                padding: 15px 70px;
+                background: #F2EDED;
 
-            .formContainer {
-                display: flex;
-                flex-direction: column;
-                margin: 5px;
-
-                input[type=text] {
-                    width: auto;
+                .formContainer {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 5px;
+                    
+                    input[type=text] {
+                        width: auto;
+                    }
                 }
-
             }
-
-            button[type=submit] {
-                background-image: linear-gradient(to right, #FE9F6C, #E41C66);
-                border: none;
-                color: white;
-                padding: 5px 50px;
+            
+            .buttonCl {
+                display: grid;
+                padding: 20px 0 40px 0;
+                
+                button[type=submit] {
+                    background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+                    border: none;
+                    color: white;
+                    padding: 5px 50px;
                     font-size: 20px;
+                    width: 200px;
+                    margin: 0 auto;
+                }
             }
+            
         }
     }
 

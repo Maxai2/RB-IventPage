@@ -5,8 +5,8 @@ body {
 }
 body .startClass {
   width: 500px;
-  margin: 0 auto;
   padding-top: 50px;
+  margin-left: 200px;
 }
 body .startClass h1 {
   font-weight: normal;
@@ -42,16 +42,17 @@ body .chipsContainerClass h4 {
 }
 body .chipsContainerClass .chipsClass {
   background: transparent;
-  padding: 30px;
-  width: 800px;
-  margin: auto;
+  width: auto;
   display: grid;
   grid-template-columns: auto auto auto;
+  padding: 20px 0;
+  margin: 0 170px;
 }
 body .chipsContainerClass .chipsClass .chipContClass {
   background: white;
-  margin: 10px;
+  margin: 30px;
   padding: 30px;
+  width: auto;
 }
 body .chipsContainerClass .chipsClass .chipContClass div {
   border: 2px solid #E41C66;
@@ -97,26 +98,32 @@ body .clientFormClass {
   background-image: url(formBckg.png);
   background-repeat: round;
 }
-body .clientFormClass form {
+body .clientFormClass form .formDivCl {
   margin: 0 auto;
   width: 500px;
-  background: #F2EDED;
   padding: 15px 70px;
+  background: #F2EDED;
 }
-body .clientFormClass form .formContainer {
+body .clientFormClass form .formDivCl .formContainer {
   display: flex;
   flex-direction: column;
   margin: 5px;
 }
-body .clientFormClass form .formContainer input[type=text] {
+body .clientFormClass form .formDivCl .formContainer input[type=text] {
   width: auto;
 }
-body .clientFormClass form button[type=submit] {
+body .clientFormClass form .buttonCl {
+  display: grid;
+  padding: 20px 0 40px 0;
+}
+body .clientFormClass form .buttonCl button[type=submit] {
   background-image: linear-gradient(to right, #FE9F6C, #E41C66);
   border: none;
   color: white;
   padding: 5px 50px;
   font-size: 20px;
+  width: 200px;
+  margin: 0 auto;
 }
 body .copyrightClass {
   background-image: linear-gradient(to right, #FE9F6C, #E41C66);
