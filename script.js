@@ -147,7 +147,15 @@ function scrollToForm() {
     elem.scrollIntoView({block: "start", behavior: "smooth"});
 }
 
+function initMap() {
+    var map = new google.maps.Map(document.getElementById('map-canvas'), {
+        center: {lat: -34.397, lng: 150.644},
+        zoom: 8
+    });
+}
+
 function start() {
+
     // document.getElementById("fPage").style.display = "none"
 
     // document.getElementById("bPage").style.display = "block";
@@ -205,6 +213,38 @@ function start() {
 
         selMealT.appendChild(opt);
     }
+}
+
+function showPic(img) {
+    document.getElementById('imgViewId').style.display = "grid";
+
+    var src = img.files[0].name;
+
+    // var i = new Image();
+
+    // i.src = src;
+
+    // console.log(getBase64Image(i));
+    document.getElementById('imageViewer').setAttribute('src', src);
+}
+
+function getBase64Image(img) {
+    // Create an empty canvas element
+    var canvas = document.createElement("canvas");
+    canvas.width = img.width;
+    canvas.height = img.height;
+
+    // Copy the image contents to the canvas
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+
+    // Get the data-URL formatted image
+    // Firefox supports PNG and JPEG. You could check img.src to
+    // guess the original format, but be aware the using "image/jpg"
+    // will re-encode the image.
+    var dataURL = canvas.toDataURL("image/png");
+
+    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
 }
 
 // function cancel() {
@@ -319,13 +359,6 @@ function addNumber() {
 
     div.appendChild(inputShow);
 
-    var buttonA = document.createElement('button');
-    buttonA.innerHTML = "+";
-    buttonA.addEventListener("click", addNumber);
-    buttonA.type = "button";
-
-    div.appendChild(buttonA);
-
     var buttonD = document.createElement('button');
     buttonD.innerHTML = "-";
     buttonD.setAttribute('id', countNumbers);
@@ -351,6 +384,7 @@ function addCuisine() {
     var div = document.createElement('div');
     var divId = "divCuis" + ++countCuisines;
     div.setAttribute('id', divId);
+    div.setAttribute('class', 'typesContainer');
 
     var select = document.createElement('select');
     var selIN = "selCuis" + countCuisines;
@@ -365,13 +399,6 @@ function addCuisine() {
     }
 
     div.appendChild(select);
-
-    var buttonA = document.createElement('button');
-    buttonA.innerHTML = "+";
-    buttonA.addEventListener("click", addCuisine);
-    buttonA.type = "button";
-
-    div.appendChild(buttonA);
 
     var buttonD = document.createElement('button');
     buttonD.innerHTML = "-";
@@ -398,10 +425,11 @@ function addPaymentType() {
     var div = document.createElement('div');
     var divId = "divPayT" + ++countPaymentType;
     div.setAttribute('id', divId);
+    div.setAttribute('class', 'typesContainer');
 
     var select = document.createElement('select');
     var selIN = "selPayT" + countPaymentType;
-    select.setAttribute('id', sel);
+    select.setAttribute('id', selIN);
     select.setAttribute('name', selIN);
 
     for (var i = 0; i < paymentTypeArr.length; i++) {
@@ -412,13 +440,6 @@ function addPaymentType() {
     }
 
     div.appendChild(select);
-
-    var buttonA = document.createElement('button');
-    buttonA.innerHTML = "+";
-    buttonA.addEventListener("click", addPaymentType);
-    buttonA.type = "button";
-
-    div.appendChild(buttonA);
 
     var buttonD = document.createElement('button');
     buttonD.innerHTML = "-";
@@ -445,6 +466,7 @@ function addRestaurantType() {
     var div = document.createElement('div');
     var divId = "divRestT" + ++countRestaurantType;
     div.setAttribute('id', divId);
+    div.setAttribute('class', 'typesContainer');
 
     var select = document.createElement('select');
     var selIN = "selRestT" + countRestaurantType;
@@ -459,13 +481,6 @@ function addRestaurantType() {
     }
 
     div.appendChild(select);
-
-    var buttonA = document.createElement('button');
-    buttonA.innerHTML = "+";
-    buttonA.addEventListener("click", addRestaurantType);
-    buttonA.type = "button";
-
-    div.appendChild(buttonA);
 
     var buttonD = document.createElement('button');
     buttonD.innerHTML = "-";
@@ -492,6 +507,7 @@ function addSocLink() {
     var div = document.createElement('div');
     var divId = "divSocLink" + ++countSocialLink;
     div.setAttribute('id', divId);
+    div.setAttribute('class', 'typesContainer');
 
     var input = document.createElement('input');
     var inpIN = "socLink" + countSocialLink;
@@ -500,13 +516,6 @@ function addSocLink() {
     input.type = "text";
 
     div.appendChild(input);
-
-    var buttonA = document.createElement('button');
-    buttonA.innerHTML = "+";
-    buttonA.addEventListener("click", addSocLink);
-    buttonA.type = "button";
-
-    div.appendChild(buttonA);
 
     var buttonD = document.createElement('button');
     buttonD.innerHTML = "-";
@@ -533,6 +542,7 @@ function addMealType() {
     var div = document.createElement('div');
     var divId = "divMealT" + ++countMealType;
     div.setAttribute('id', divId);
+    div.setAttribute('class', 'typesContainer');
 
     var sel = document.createElement('select');
     var selIN = "selMealT" + countMealType;
@@ -547,13 +557,6 @@ function addMealType() {
     }
 
     div.appendChild(sel);
-
-    var buttonA = document.createElement('button');
-    buttonA.innerHTML = "+";
-    buttonA.addEventListener("click", addMealType);
-    buttonA.type = "button";
-
-    div.appendChild(buttonA);
 
     var buttonD = document.createElement('button');
     buttonD.innerHTML = "-";
@@ -574,44 +577,44 @@ function deleteMealType() {
     countMealType--;
 }
 
-function findByCoord() {
-    // Get lat and lng values from input fields
-    var lat = document.getElementById('lat').value;
-    var lng = document.getElementById('long').value;
+// function findByCoord() {
+//     // Get lat and lng values from input fields
+//     var lat = document.getElementById('lat').value;
+//     var lng = document.getElementById('long').value;
 
-    // Validate user input as numbers
-    lat = (!isNumber(lat) ? 0 : lat);
-    lng = (!isNumber(lng) ? 0 : lng);
+//     // Validate user input as numbers
+//     lat = (!isNumber(lat) ? 0 : lat);
+//     lng = (!isNumber(lng) ? 0 : lng);
 
-    // Validate user input as valid lat/lng values
-    lat = latRange(lat);
-    lng = lngRange(lng);
+//     // Validate user input as valid lat/lng values
+//     lat = latRange(lat);
+//     lng = lngRange(lng);
 
-    // Replace input values
-    document.getElementById('lat').value = lat;
-    document.getElementById('lng').value = lng;
+//     // Replace input values
+//     document.getElementById('lat').value = lat;
+//     document.getElementById('lng').value = lng;
 
-    // Create LatLng object
-    var mapCenter = new google.maps.LatLng(lat, lng);
+//     // Create LatLng object
+//     var mapCenter = new google.maps.LatLng(lat, lng);
     
-    new google.maps.Marker({
-        position: mapCenter,
-        title: 'Marker title',
-        map: map
-    });
+//     new google.maps.Marker({
+//         position: mapCenter,
+//         title: 'Marker title',
+//         map: map
+//     });
 
-    // Center map
-    map.setCenter(mapCenter);
-}
+//     // Center map
+//     map.setCenter(mapCenter);
+// }
 
-function isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
+// function isNumber(n) {
+//     return !isNaN(parseFloat(n)) && isFinite(n);
+// }
 
-function latRange(n) {
-    return Math.min(Math.max(parseInt(n), -maxLat), maxLat);
-}
+// function latRange(n) {
+//     return Math.min(Math.max(parseInt(n), -maxLat), maxLat);
+// }
 
-function lngRange(n) {
-    return Math.min(Math.max(parseInt(n), -180), 180);
-}
+// function lngRange(n) {
+//     return Math.min(Math.max(parseInt(n), -180), 180);
+// }

@@ -117,7 +117,7 @@ body {
         background-repeat: round;
 
         form {
-            
+
             .formDivCl {
                 margin: 0 auto;
                 width: 500px;
@@ -129,8 +129,160 @@ body {
                     flex-direction: column;
                     margin: 5px;
                     
+                    #address {
+                        min-height: 50px;
+                        max-height: 50px;
+                        resize: none;
+                    }
+
+                    .imgViewCl {
+                        display: grid;
+
+                        #imageViewer { 
+                            margin: 10px auto;
+                            width: 300px;
+                            height: 150px;
+                        }
+                    }
+
+                    label {
+                        margin-bottom: 10px;
+                    }
+
+                    input {
+                        border: none;
+                        font-size: 20px;
+                    }
+
+                    input[type=file], input[type=time] {
+                        font-size: 14px;
+                    }
+
                     input[type=text] {
                         width: auto;
+                    }
+                }
+
+                .coordinateContainer {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    grid-template-rows: auto auto 500px;
+
+                    button {
+                        grid-column: 1 / span 2;
+                        width: 100px;
+                        margin: 10px auto 0 auto;
+                    }
+
+                    #map-canvas {
+                        grid-column: 1 / span 2;
+                        width: auto;
+                        margin-top: 10px;
+                    }
+                }
+
+                .timeContainer {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                }
+
+                .additionalClass {
+                    display: grid;
+                    grid-template-columns: auto auto;
+
+                    .checkClass {
+                        background: white;
+                        margin: 5px;
+
+                        .formContainer {
+                            display: flex;
+                            flex-direction: row;
+                            margin-left: 30px;
+
+                            label {
+                                width: 150px;
+                            }
+                        }
+                    }
+
+                    .secondInfoClass {
+                        background: white;
+                        margin: 5px;
+                        display: grid;
+                        grid-template-rows: auto auto;
+
+                        .liveMusicClass {
+                            margin: auto 0 auto 0;                       
+                        }
+
+                        .formContainer {
+                            display: grid;
+                            grid-template-columns: 2fr 1fr;
+
+                            input {
+                                height: 20px;
+                                width: 65px;
+                                background: #F2EDED;
+                                margin: auto 0 auto 0;
+                                text-align: center;
+                                font-size: 14px;
+                            }
+
+                            input[type=number]::-webkit-inner-spin-button {
+                                opacity: 1;
+                            }
+
+                            label {
+                                margin: auto 0 auto 0;
+                            }
+                        }
+                    }
+                }
+
+                .typesClass {
+                    .numberContainer {
+                        display: grid;
+                        grid-template-columns: 40px auto 110px 25px 25px;
+
+                        input[type=text] { 
+                            margin: 0 10px;
+                        }
+                        
+                        input[type=checkbox] {
+                            margin: auto;
+                        }
+
+                        button {
+                            box-sizing: border-box;
+                        }
+
+                    }
+
+                    .typesContainer {
+                        display: flex;
+                        flex-direction: row;
+                        margin-bottom: 5px;
+
+                        select, input[type=text] {
+                            width: 200px;
+                        }
+
+                        button {
+                            margin-left: 5px;
+                            width: 50px;
+                        }
+                    }
+                }
+
+                .additInfoClass {
+                    display: flex;
+                    flex-direction: column;
+
+                    textarea {
+                        margin-top: 5px;
+                        resize: none;
+                        width: auto;
+                        height: 50px;
                     }
                 }
             }

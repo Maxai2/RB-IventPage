@@ -81,12 +81,14 @@
                         </div>
                         <div class="formContainer">
                             <label>Address </label>
-                            <input type="text" id="address" name="address" required>
+                            <textarea type="text" id="address" name="address" required></textarea>
                         </div>
                         <div class="formContainer">
                             <label>Main image </label>
-                            <input type="file" id="mainImage" name="mainImage">
-                            <img id="imageViewer"></img>
+                            <input type="file" onchange="showPic(this)" id="mainImage" name="mainImage" required>
+                            <div class="imgViewCl" style="display: none;" id="imgViewId">
+                                <img id="imageViewer"></img>
+                            </div>
                         </div>                
                     </div>
                     <hr/>
@@ -99,59 +101,68 @@
                             <label>Longitude: </label>
                             <input type="number" id="long" name="long">
                         </div>
-                        <button onclick="findByCoord()">Find</button>
+                        <button type="button">Find</button>
                         <div id="map-canvas"></div>
                     </div>
                     <hr/>
                     <div class="timeContainer">
                         <div class="formContainer">
                             <label>Open time: </label> <!--open-->
-                            <input type="number" id="openTime" name="openTime">
+                            <input type="time" id="openTime" name="openTime" required>
                         </div>
                         <div class="formContainer">
                             <label>Close time: </label> <!--close-->
-                            <input type="number" id="closeTime" name="closeTime">
+                            <input type="time" id="closeTime" name="closeTime" required>
                         </div>
                     </div>
                     <hr/>
-                    <div class="addationalInfoContainer">
-                        <div class="formContainer">
-                            <label>Parking: </label>
-                            <input type="checkbox" id="isParking" name="isParking">
+                    <div class="additionalClass">
+                        <div class="checkClass">
+                            <div class="formContainer">
+                                <label>Parking: </label>
+                                <input type="checkbox" id="isParking" name="isParking">
+                            </div>
+                            <div class="formContainer">
+                                <label>Wifi: </label>
+                                <input type="checkbox" id="isWifi" name="isWifi">
+                            </div>
+                            <div class="formContainer">
+                                <label>Open space: </label>
+                                <input type="checkbox" id="isOpenSpace" name="isOpenSpace">
+                            </div>
+                            <div class="formContainer">
+                                <label>Children zone: </label>
+                                <input type="checkbox" id="isChildrenZone" name="isChildrenZone">
+                            </div>
+                            <div class="formContainer">
+                                <label>Business lunch: </label>
+                                <input type="checkbox" id="isBusinessLunch" name="isBusinessLunch">
+                            </div>
                         </div>
-                        <div class="formContainer">
-                            <label>Wifi: </label>
-                            <input type="checkbox" id="isWifi" name="isWifi">
+
+                        <div class="secondInfoClass">
+                            <div class="liveMusicClass">
+                                <label>Music: </label> <br>
+                                <label>
+                                    <input type="radio" name="isLiveMusic" id="isLiveMusic" value="null" checked> No <br>
+                                </label>
+                                <label>
+                                    <input type="radio" name="isLiveMusic" id="isLiveMusic" value="false"> Background <br>
+                                </label>
+                                <label>
+                                    <input type="radio" name="isLiveMusic" id="isLiveMusic" value="true"> Live 
+                                </label>
+                            </div>
+                            
+                            <div class="formContainer">
+                                <label>Max reserve day: </label>
+                                <input type="number" id="maxReserveDay" name="maxReserveDay" min="1" value="1" required>
+                            </div>
                         </div>
-                        <div class="formContainer">
-                            <label>Music: </label> <br>
-                            <label>
-                                <input type="radio" name="isLiveMusic" id="isLiveMusic" value="null"> No <br>
-                            </label>
-                            <label>
-                                <input type="radio" name="isLiveMusic" id="isLiveMusic" value="false"> Background <br>
-                            </label>
-                            <label>
-                                <input type="radio" name="isLiveMusic" id="isLiveMusic" value="true"> Live 
-                            </label>
-                        </div>
-                        <div class="formContainer">
-                            <label>Open space: </label>
-                            <input type="checkbox" id="isOpenSpace" name="isOpenSpace">
-                        </div>
-                        <div class="formContainer">
-                            <label>Children zone: </label>
-                            <input type="checkbox" id="isChildrenZone" name="isChildrenZone">
-                        </div>
-                        <div class="formContainer">
-                            <label>Business lunch: </label>
-                            <input type="checkbox" id="isBusinessLunch" name="isBusinessLunch">
-                        </div>
-                        <div class="formContainer">
-                            <label>Max reserve day: </label>
-                            <input type="number" id="maxReserveDay" name="maxReserveDay">
-                        </div>
-                        <div>
+                    </div>
+                    <hr>
+                    <div class="typesClass">
+                        <div class="numberContainerClass">
                             <label>Numbers: </label>
                             <div id="idNumberContainer">
                                 <div class="numberContainer">
@@ -163,59 +174,65 @@
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div>
                             <label>Сuisines: </label>
                             <div id="idCuisineContainer"> 
-                                <div>
+                                <div class="typesContainer">
                                     <select id="selCuis1" name="selCuis1">
                                     </select>
                                     <button onclick="addCuisine()" type="button">+</button>
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div>
-                            <label>Payment types: </label>
+                            <label>Payment type: </label>
                             <div id="idPaymentTypeContainer">
-                                <div>
+                                <div class="typesContainer">
                                     <select id="selPayT1" name="selPayT1">
                                     </select>
                                     <button onclick="addPaymentType()" type="button">+</button>
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div>
                             <label>Restaurant type: </label>
                             <div id="idRestaurantTypeContainer">
-                                <div>
+                                <div class="typesContainer">
                                     <select id="selRestT1" name="selRestT1">
                                     </select>
                                     <button onclick="addRestaurantType()" type="button">+</button>
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <label>Social links: </label>
-                            <div id="idSocialLinksContainer">
-                                <div>
-                                    <input type="text" id="socLink1" name="socLink1">
-                                    <button onclick="addSocLink()" type="button">+</button>
-                                </div>
-                            </div>
-                        </div>
+                        <hr>
                         <div>
                             <label>Meal type: </label>
                             <div id="idMealTypeContainer">
-                                <div>
+                                <div class="typesContainer">
                                     <select id="selMealT1" name="selMealT1">
                                     </select>
                                     <button onclick="addMealType()" type="button">+</button>
                                 </div>
                             </div>
                         </div>
+                        <hr>
                         <div>
-                            <label>Additional info:</label>
-                            <textarea id="additionalInfo" name="additionalInfo"></textarea>
+                            <label>Social links: </label>
+                            <div id="idSocialLinksContainer">
+                                <div class="typesContainer">
+                                    <input type="text" id="socLink1" name="socLink1">
+                                    <button onclick="addSocLink()" type="button">+</button>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                    <hr>
+                    <div class="additInfoClass">
+                        <label>Additional info:</label>
+                        <textarea id="additionalInfo" name="additionalInfo"></textarea>
                     </div>
                 </div>
                 <div class="buttonCl">
@@ -233,5 +250,7 @@
     <div class="copyrightClass">
         <h4>@Copyright All right reserved</h5>
     </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnz9pDVpwCIaOTRyb5LamED2OQWJn3SXU&callback=initMap"></script>
 </body>
 </html>
