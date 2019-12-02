@@ -4,19 +4,26 @@ body {
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
 body .startClass {
-  width: 500px;
-  padding-top: 50px;
+  background-image: url(upImg.png);
+  background-repeat: round;
+  width: 700px;
   margin-left: 200px;
+  margin-top: 50px;
 }
-body .startClass h1 {
+body .startClass .imgStartClass {
+  width: 500px;
+  margin: 0;
+  padding: 20px;
+}
+body .startClass .imgStartClass h1 {
   font-weight: normal;
 }
-body .startClass a {
+body .startClass .imgStartClass a {
   color: #E41C66;
   border-bottom: 1px dotted #E41C66;
   text-decoration: none;
 }
-body .startClass button {
+body .startClass .imgStartClass button {
   background-image: linear-gradient(to right, #FE9F6C, #E41C66);
   border: none;
   color: white;
@@ -24,7 +31,9 @@ body .startClass button {
   font-size: 20px;
 }
 body .chipsContainerClass {
-  background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+  background-image: url(downImg.png);
+  background-repeat: no-repeat;
+  margin: 0 170px;
 }
 body .chipsContainerClass h2 {
   color: white;
@@ -46,7 +55,6 @@ body .chipsContainerClass .chipsClass {
   display: grid;
   grid-template-columns: auto auto auto;
   padding: 20px 0;
-  margin: 0 170px;
 }
 body .chipsContainerClass .chipsClass .chipContClass {
   background: white;
@@ -130,7 +138,8 @@ body .clientFormClass form .formDivCl .formContainer input {
   font-size: 20px;
 }
 body .clientFormClass form .formDivCl .formContainer input[type=file],
-body .clientFormClass form .formDivCl .formContainer input[type=time] {
+body .clientFormClass form .formDivCl .formContainer input[type=time],
+body .clientFormClass form .formDivCl .formContainer input[type=number] {
   font-size: 14px;
 }
 body .clientFormClass form .formDivCl .formContainer input[type=text] {

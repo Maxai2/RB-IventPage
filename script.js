@@ -137,9 +137,9 @@ var mealTypeArr = [
 ];
 var countMealType = 1;
 
-// var maxLat = Math.atan(Math.sinh(Math.PI)) * 180 / Math.PI;
+var maxLat = Math.atan(Math.sinh(Math.PI)) * 180 / Math.PI;
 
-// var map = 0;
+var map = 0;
 
 function scrollToForm() {
     var elem = document.getElementById("clForm");
@@ -147,29 +147,49 @@ function scrollToForm() {
     elem.scrollIntoView({block: "start", behavior: "smooth"});
 }
 
-function initMap() {
-    var map = new google.maps.Map(document.getElementById('map-canvas'), {
-        center: {lat: -34.397, lng: 150.644},
-        zoom: 8
+function showLocation(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+
+    document.getElementById('lat').value = latitude;
+    document.getElementById('long').value = longitude;
+
+    var center = new google.maps.LatLng(latitude, longitude);
+
+    var mapOptions = {
+        zoom: 12,
+        center: center,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    var marker = new google.maps.Marker({
+        position: center
     });
+
+    marker.setMap(map);
+ }
+
+ function errorHandler(err) {
+    if(err.code == 1) {
+       alert("Error: Access is denied!");
+    } else if( err.code == 2) {
+       alert("Error: Position is unavailable!");
+    }
+ }
+
+function initMap() {
+    if(navigator.geolocation){
+        // timeout at 60000 milliseconds (60 seconds)
+        var options = {timeout:60000};
+        navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
+    } else {
+    alert("Sorry, browser does not support geolocation!");
+    }
 }
 
 function start() {
-
-    // document.getElementById("fPage").style.display = "none"
-
-    // document.getElementById("bPage").style.display = "block";
-
-    // var center = new google.maps.LatLng(0, 0);
-
-    // var mapOptions = {
-    //     zoom: 3,
-    //     center: center,
-    //     mapTypeId: google.maps.MapTypeId.ROADMAP
-    // };
-
-    // map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
     var selCuis = document.getElementById("selCuis1");
 
     selCuis.options.length = 0;
@@ -577,44 +597,44 @@ function deleteMealType() {
     countMealType--;
 }
 
-// function findByCoord() {
-//     // Get lat and lng values from input fields
-//     var lat = document.getElementById('lat').value;
-//     var lng = document.getElementById('long').value;
+function findByCoord() {
+    // Get lat and lng values from input fields
+    var lat = document.getElementById('lat').value;
+    var lng = document.getElementById('long').value;
 
-//     // Validate user input as numbers
-//     lat = (!isNumber(lat) ? 0 : lat);
-//     lng = (!isNumber(lng) ? 0 : lng);
+    // Validate user input as numbers
+    lat = (!isNumber(lat) ? 0 : lat);
+    lng = (!isNumber(lng) ? 0 : lng);
 
-//     // Validate user input as valid lat/lng values
-//     lat = latRange(lat);
-//     lng = lngRange(lng);
+    // Validate user input as valid lat/lng values
+    lat = latRange(lat);
+    lng = lngRange(lng);
 
-//     // Replace input values
-//     document.getElementById('lat').value = lat;
-//     document.getElementById('lng').value = lng;
+    // Replace input values
+    document.getElementById('lat').value = lat;
+    document.getElementById('lng').value = lng;
 
-//     // Create LatLng object
-//     var mapCenter = new google.maps.LatLng(lat, lng);
+    // Create LatLng object
+    var mapCenter = new google.maps.LatLng(lat, long);
     
-//     new google.maps.Marker({
-//         position: mapCenter,
-//         title: 'Marker title',
-//         map: map
-//     });
+    new google.maps.Marker({
+        position: mapCenter,
+        title: 'Marker title',
+        map: map
+    });
 
-//     // Center map
-//     map.setCenter(mapCenter);
-// }
+    // Center map
+    map.setCenter(mapCenter);
+}
 
-// function isNumber(n) {
-//     return !isNaN(parseFloat(n)) && isFinite(n);
-// }
+function isNumber(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
-// function latRange(n) {
-//     return Math.min(Math.max(parseInt(n), -maxLat), maxLat);
-// }
+function latRange(n) {
+    return Math.min(Math.max(parseInt(n), -maxLat), maxLat);
+}
 
-// function lngRange(n) {
-//     return Math.min(Math.max(parseInt(n), -180), 180);
-// }
+function lngRange(n) {
+    return Math.min(Math.max(parseInt(n), -180), 180);
+}

@@ -4,31 +4,43 @@ body {
     font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 
     .startClass {
-        width: 500px;
-        padding-top: 50px;
+        background-image: url(upImg.png);
+        background-repeat: round;
+        width: 700px;
         margin-left: 200px;
+        margin-top: 50px;
 
-        h1 {
-            font-weight: normal;
-        }
+        .imgStartClass {
 
-        a {
-            color: #E41C66;
-            border-bottom: 1px dotted #E41C66;
-            text-decoration: none;
-        }
+            width: 500px;
+            margin: 0;
+            padding: 20px;
 
-        button {
-            background-image: linear-gradient(to right, #FE9F6C, #E41C66);
-            border: none;
-            color: white;
-            padding: 5px 50px;
-            font-size: 20px;
+            h1 {
+                font-weight: normal;
+            }
+
+            a {
+                color: #E41C66;
+                border-bottom: 1px dotted #E41C66;
+                text-decoration: none;
+            }
+
+            button {
+                background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+                border: none;
+                color: white;
+                padding: 5px 50px;
+                font-size: 20px;
+            }
         }
     }
 
     .chipsContainerClass {  
-        background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+        background-image: url(downImg.png);
+        background-repeat: no-repeat;
+        margin: 0 170px;
+        // background-image: linear-gradient(to right, #FE9F6C, #E41C66);
 
         h2 { 
             color: white;
@@ -52,7 +64,6 @@ body {
             display: grid;
             grid-template-columns: auto auto auto;
             padding: 20px 0;
-            margin: 0 170px;
 
             .chipContClass {
                 background: white;
@@ -154,7 +165,7 @@ body {
                         font-size: 20px;
                     }
 
-                    input[type=file], input[type=time] {
+                    input[type=file], input[type=time], input[type=number] {
                         font-size: 14px;
                     }
 
