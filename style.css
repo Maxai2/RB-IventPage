@@ -3,66 +3,69 @@ body {
   padding: 0;
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
-body .startClass {
-  background-image: url(upImg.png);
-  background-repeat: round;
-  width: 700px;
-  margin-left: 200px;
-  margin-top: 50px;
+body .imgClassForUp {
+  background-image: url(firstImgpng.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
 }
-body .startClass .imgStartClass {
+body .imgClassForUp .startClass {
+  padding-bottom: 100px;
   width: 500px;
-  margin: 0;
-  padding: 20px;
+  margin: 0 360px;
 }
-body .startClass .imgStartClass h1 {
+body .imgClassForUp .startClass h1 {
   font-weight: normal;
 }
-body .startClass .imgStartClass a {
+body .imgClassForUp .startClass a {
   color: #E41C66;
   border-bottom: 1px dotted #E41C66;
   text-decoration: none;
 }
-body .startClass .imgStartClass button {
+body .imgClassForUp .startClass button {
   background-image: linear-gradient(to right, #FE9F6C, #E41C66);
   border: none;
   color: white;
   padding: 5px 50px;
   font-size: 20px;
 }
-body .chipsContainerClass {
-  background-image: url(downImg.png);
+body .imgClassForDown {
+  background-image: url(secondImgpng.png);
   background-repeat: no-repeat;
-  margin: 0 170px;
+  background-size: cover;
+  background-position: bottom;
 }
-body .chipsContainerClass h2 {
+body .imgClassForDown .chipsContainerClass {
+  margin: 0 330px;
+}
+body .imgClassForDown .chipsContainerClass h2 {
   color: white;
   text-align: center;
   font-size: 30px;
-  margin: 10px;
+  margin: 0 10px;
   font-weight: normal;
 }
-body .chipsContainerClass h4 {
+body .imgClassForDown .chipsContainerClass h4 {
   color: white;
   margin: auto;
   max-width: 500px;
   text-align: center;
   font-weight: normal;
 }
-body .chipsContainerClass .chipsClass {
+body .imgClassForDown .chipsContainerClass .chipsClass {
   background: transparent;
   width: auto;
   display: grid;
   grid-template-columns: auto auto auto;
-  padding: 20px 0;
+  padding-top: 20px;
 }
-body .chipsContainerClass .chipsClass .chipContClass {
+body .imgClassForDown .chipsContainerClass .chipsClass .chipContClass {
   background: white;
   margin: 30px;
   padding: 30px;
   width: auto;
 }
-body .chipsContainerClass .chipsClass .chipContClass div {
+body .imgClassForDown .chipsContainerClass .chipsClass .chipContClass div {
   border: 2px solid #E41C66;
   width: 60px;
   height: 70px;
@@ -127,8 +130,8 @@ body .clientFormClass form .formDivCl .formContainer .imgViewCl {
 }
 body .clientFormClass form .formDivCl .formContainer .imgViewCl #imageViewer {
   margin: 10px auto;
-  width: 300px;
-  height: 150px;
+  max-width: 300px;
+  max-height: 400px;
 }
 body .clientFormClass form .formDivCl .formContainer label {
   margin-bottom: 10px;
@@ -145,19 +148,9 @@ body .clientFormClass form .formDivCl .formContainer input[type=number] {
 body .clientFormClass form .formDivCl .formContainer input[type=text] {
   width: auto;
 }
-body .clientFormClass form .formDivCl .coordinateContainer {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto 500px;
-}
-body .clientFormClass form .formDivCl .coordinateContainer button {
-  grid-column: 1 / span 2;
-  width: 100px;
-  margin: 10px auto 0 auto;
-}
 body .clientFormClass form .formDivCl .coordinateContainer #map-canvas {
-  grid-column: 1 / span 2;
-  width: auto;
+  width: 500px;
+  height: 300px;
   margin-top: 10px;
 }
 body .clientFormClass form .formDivCl .timeContainer {

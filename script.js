@@ -151,9 +151,6 @@ function showLocation(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
 
-    document.getElementById('lat').value = latitude;
-    document.getElementById('long').value = longitude;
-
     var center = new google.maps.LatLng(latitude, longitude);
 
     var mapOptions = {
@@ -169,15 +166,25 @@ function showLocation(position) {
     });
 
     marker.setMap(map);
- }
+    
+    map.addListener('center_changed', function() {
+            window.setTimeout(function() {
+            map.panTo(marker.getPosition());
+        }, 3000);
+    });
 
- function errorHandler(err) {
+    map.addEventListener('rightclick', function() {
+        
+    });
+}
+
+function errorHandler(err) {
     if(err.code == 1) {
-       alert("Error: Access is denied!");
+        alert("Error: Access is denied!");
     } else if( err.code == 2) {
-       alert("Error: Position is unavailable!");
+        alert("Error: Position is unavailable!");
     }
- }
+}
 
 function initMap() {
     if(navigator.geolocation){
