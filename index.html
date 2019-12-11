@@ -87,7 +87,8 @@
                         </div>
                         <div class="formContainer">
                             <label>Main image </label>
-                            <input type="file" onchange="showPic(this)" id="mainImage" name="mainImage" accept="image/*" required>
+                            <input type="file" onchange="showPic(this)" id="mainImage" accept="image/*" required>
+                            <input type="hidden" name="imageByteArr" id="imageByteArr">
                             <div class="imgViewCl" style="display: none;" id="imgViewId">
                                 <img id="imageViewer"></img>
                             </div>
@@ -113,6 +114,9 @@
                             <label>Close time: </label> <!--close-->
                             <input type="time" id="closeTime" name="closeTime" required>
                         </div>
+                        <button onclick="sh()">
+                            jh
+                        </button>
                     </div>
                     <hr/>
                     <div class="additionalClass">
@@ -243,7 +247,7 @@
     </div>
         
     <footer>
-        
+         
     </footer>
 
     <div class="copyrightClass">

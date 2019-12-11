@@ -104,6 +104,7 @@ var cuisinesArr = [
     "Czech",
     "Japanese food"
 ];
+var cuisinesDict = [];
 var countCuisines = 1;
 
 var paymentTypeArr = [
@@ -111,6 +112,7 @@ var paymentTypeArr = [
     "Card",
     "Qr code"
 ];
+var paymentTypeDict = [];
 var countPaymentType = 1;
 
 var restaurantTypeArr = [
@@ -123,6 +125,7 @@ var restaurantTypeArr = [
     "Cafeteria",
     "Fast food"
 ];
+var restaurantTypeDict = [];
 var countRestaurantType = 1;
 
 var countSocialLink = 1;
@@ -135,6 +138,7 @@ var mealTypeArr = [
     "Night Life",
     "Things to do"
 ];
+var mealTypeDict = [];
 var countMealType = 1;
 
 var maxLat = Math.atan(Math.sinh(Math.PI)) * 180 / Math.PI;
@@ -150,6 +154,9 @@ function scrollToForm() {
 function showLocation(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
+
+    document.getElementById('lat').value = latitude;
+    document.getElementById('long').value = longitude;
 
     var center = new google.maps.LatLng(latitude, longitude);
 
@@ -172,10 +179,6 @@ function showLocation(position) {
             map.panTo(marker.getPosition());
         }, 3000);
     });
-
-    map.addEventListener('rightclick', function() {
-        
-    });
 }
 
 function errorHandler(err) {
@@ -192,86 +195,165 @@ function initMap() {
         var options = {timeout:60000};
         navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
     } else {
-    alert("Sorry, browser does not support geolocation!");
+        alert("Sorry, browser does not support geolocation!");
     }
 }
 
 function start() {
-    var selCuis = document.getElementById("selCuis1");
 
-    selCuis.options.length = 0;
+    fetch('https://rbwebapp.azurewebsites.net/api/parameter')
+    .then(response => response.json())
+    .then(arr => {
+        var cui = arr["cuisines"];
+        var selCuis = document.getElementById("selCuis1");
+        selCuis.options.length = 0;
 
-    for (var i = 0; i < cuisinesArr.length; i++) {
-        var opt = document.createElement('option');
-        opt.text = cuisinesArr[i];
+        for (var key in cui) {
+            cuisinesDict.push({
+                key: key,
+                value: cui[key]
+            });
+            
+            var opt = document.createElement('option');
+            opt.text = cui[key];
+            selCuis.appendChild(opt);
+        }
 
-        selCuis.appendChild(opt);
-    }
+        var pay = arr["paymentTypes"];
+        var selPayT = document.getElementById("selPayT1");
+        selPayT.options.length = 0;
 
-    var selPayT = document.getElementById("selPayT1");
+        for (var key in pay) {
+            paymentTypeDict.push({
+                key: key,
+                value: pay[key]
+            });
 
-    selPayT.options.length = 0;
+            var opt = document.createElement('option');
+            opt.text = pay[key];
 
-    for (var i = 0; i < paymentTypeArr.length; i++) {
-        var opt = document.createElement('option');
-        opt.text = paymentTypeArr[i];
+            selPayT.appendChild(opt);
+        }
 
-        selPayT.appendChild(opt);
-    }
+        var res = arr["clientTypes"];
+        var selRestT = document.getElementById("selRestT1");
+        selRestT.options.length = 0;
 
-    var selRestT = document.getElementById("selRestT1");
+        for (var key in res) {
+            restaurantTypeDict.push({
+                key: key,
+                value: res[key]
+            });
 
-    selRestT.options.length = 0;
+            var opt = document.createElement('option');
+            opt.text = res[key];
 
-    for (var i = 0; i < restaurantTypeArr.length; i++) {
-        var opt = document.createElement('option');
-        opt.text = restaurantTypeArr[i];
+            selRestT.appendChild(opt);
+        }
+        
+        var mea = arr["mealTypes"];
+        var selMealT = document.getElementById("selMealT1");
+        selMealT.options.length = 0;
 
-        selRestT.appendChild(opt);
-    }
+        for (var key in mea) {
+            mealTypeDict.push({
+                key: key,
+                value: mea[key]
+            });
 
-    var selMealT = document.getElementById("selMealT1");
+            var opt = document.createElement('option');
+            opt.text = mea[key];
 
-    selMealT.options.length = 0;
+            selMealT.appendChild(opt);
+        }
+    });
 
-    for (var i = 0; i < mealTypeArr.length; i++) {
-        var opt = document.createElement('option');
-        opt.text = mealTypeArr[i];
+    // var selCuis = document.getElementById("selCuis1");
+    
+    // selCuis.options.length = 0;
 
-        selMealT.appendChild(opt);
-    }
+    // for (var i = 0; i < cuisinesArr.length; i++) {
+    //     var opt = document.createElement('option');
+    //     opt.text = cuisinesArr[i];
+
+    //     selCuis.appendChild(opt);
+    // }
+
+    // var selPayT = document.getElementById("selPayT1");
+
+    // selPayT.options.length = 0;
+
+    // for (var i = 0; i < paymentTypeArr.length; i++) {
+    //     var opt = document.createElement('option');
+    //     opt.text = paymentTypeArr[i];
+
+    //     selPayT.appendChild(opt);
+    // }
+
+    // var selRestT = document.getElementById("selRestT1");
+
+    // selRestT.options.length = 0;
+
+    // for (var i = 0; i < restaurantTypeArr.length; i++) {
+    //     var opt = document.createElement('option');
+    //     opt.text = restaurantTypeArr[i];
+
+    //     selRestT.appendChild(opt);
+    // }
+
+    // var selMealT = document.getElementById("selMealT1");
+
+    // selMealT.options.length = 0;
+
+    // for (var i = 0; i < mealTypeArr.length; i++) {
+    //     var opt = document.createElement('option');
+    //     opt.text = mealTypeArr[i];
+
+    //     selMealT.appendChild(opt);
+    // }
 }
 
-function showPic(img) {
+// function showPic(img) {
+//     var src = img.files[0].name;
+    
+//     document.getElementById('imageViewer').setAttribute('src', src);
+//     document.getElementById('imageByteArr').value = arr;
+    
+//     var i = new Image();
+    
+//     // i.setAttribute('crossOrigin', 'anonymous');
+//     i.setAttribute('src', src);
+    
+//     var arr = getBase64Image(i);
+    
+//     console.log(arr);
+// }
+
+function showPic() {
     document.getElementById('imgViewId').style.display = "grid";
 
-    var src = img.files[0].name;
+    var fileList = document.getElementById("mainImage").files;
+    
+    document.getElementById('imageViewer').setAttribute('src', fileList[0].name);
 
-    // var i = new Image();
+    var fileReader = new FileReader();
 
-    // i.src = src;
+    if (fileReader && fileList && fileList.length) {
+       fileReader.readAsArrayBuffer(fileList[0]);
+       fileReader.onload = function () {
+          var imageData = fileReader.result;
+          var binary = '';
 
-    // console.log(getBase64Image(i));
-    document.getElementById('imageViewer').setAttribute('src', src);
-}
-
-function getBase64Image(img) {
-    // Create an empty canvas element
-    var canvas = document.createElement("canvas");
-    canvas.width = img.width;
-    canvas.height = img.height;
-
-    // Copy the image contents to the canvas
-    var ctx = canvas.getContext("2d");
-    ctx.drawImage(img, 0, 0);
-
-    // Get the data-URL formatted image
-    // Firefox supports PNG and JPEG. You could check img.src to
-    // guess the original format, but be aware the using "image/jpg"
-    // will re-encode the image.
-    var dataURL = canvas.toDataURL("image/png");
-
-    return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+            var bytes = new Uint8Array( imageData );
+            var len = bytes.byteLength;
+            for (var i = 0; i < len; i++) {
+                binary += String.fromCharCode( bytes[ i ] );
+            }
+            
+            document.getElementById('imageByteArr').value = window.btoa( binary );
+            // console.log(window.btoa( binary ));
+       };
+    }
 }
 
 // function cancel() {
@@ -283,10 +365,10 @@ function getBase64Image(img) {
 function save() {
     event.preventDefault();
 
-    let form = document.getElementById("bPage");
+    let form = document.forms["newClient"];
 
     var phones = [];
-    
+
     for(var i = 0; i < countNumbers; i++) {
         phones.push(new Phone("+994" + form.elements["number" + (i + 1)].value, form.elements["isShow" + (i + 1)].checked));
     }
@@ -298,7 +380,7 @@ function save() {
     var cuisinesIds = [];
 
     for (var i = 0; i < countCuisines; i++) {
-        cuisinesIds.push(form.elements["selCuis" + (i + 1)].selectedIndex);
+        cuisinesIds.push(cuisinesDict[form.elements["selCuis" + (i + 1)].selectedIndex].key);
     }
 
     // for (var i = 0; i < countCuisines; i++) {
@@ -308,7 +390,7 @@ function save() {
     var paymentTypeIds = [];
 
     for (var i = 0; i < countPaymentType; i++) {
-        paymentTypeIds.push(form.elements["selPayT" + (i + 1)].selectedIndex);
+        paymentTypeIds.push(paymentTypeDict[form.elements["selPayT" + (i + 1)].selectedIndex].key);
     }
 
     // for (var i = 0; i < countPaymentType; i++) {
@@ -318,7 +400,7 @@ function save() {
     var clientTypeIds = [];
 
     for (var i = 0; i < countRestaurantType; i++) {
-        clientTypeIds.push(form.elements["selRestT" + (i + 1)].selectedIndex);
+        clientTypeIds.push(restaurantTypeDict[form.elements["selRestT" + (i + 1)].selectedIndex].key);
     }
 
     // for (var i = 0; i < countRestaurantType; i++) {
@@ -328,7 +410,7 @@ function save() {
     var mealTypeIds = [];
 
     for (var i = 0; i < countMealType; i++) {
-        mealTypeIds.push(form.elements["selMealT" + (i + 1)].selectedIndex);
+        mealTypeIds.push(mealTypeDict[form.elements["selMealT" + (i + 1)].selectedIndex].key);
     }
 
     // for (var i = 0; i < countMealType; i++) {
@@ -345,11 +427,63 @@ function save() {
     //     socialLinks.push(document.getElementById("socLink" + (i + 1)).value);
     // }
 
-    var cl = new Client(form.elements["name"].value, form.elements["email"].value, form.elements["address"].value, form.elements["mainImage"].value, form.elements["lat"].value, form.elements["long"].value, form.elements["openTime"].value, form.elements["closeTime"].value, form.elements["isParking"].checked, form.elements["isWifi"].checked, form.elements["isLiveMusic"].value, form.elements["isOpenSpace"].checked, form.elements["isChildrenZone"].checked, 
+    var lmV;
+    switch (form.elements["isLiveMusic"].value) {
+        case "null":
+            lmV = null;
+            break;
+        case "true":
+            lmV = true;
+            break;
+        case "false":
+            lmV = false;
+            break;
+    }
+
+    var ot = form.elements["openTime"].value;
+    var otf = parseInt(ot.substring(0, 2)) * 60 + parseInt(ot.substring(3));
+
+    var ct = form.elements["closeTime"].value;
+    var ctf = parseInt(ct.substring(0, 2)) * 60 + parseInt(ct.substring(3));
+
+    var cl = new Client(form.elements["name"].value, form.elements["email"].value, form.elements["address"].value, form.elements["imageByteArr"].value, form.elements["lat"].value, form.elements["long"].value, otf, ctf, form.elements["isParking"].checked, form.elements["isWifi"].checked, lmV, form.elements["isOpenSpace"].checked, form.elements["isChildrenZone"].checked, 
     form.elements["isBusinessLunch"].checked, form.elements["additionalInfo"].value, form.elements["maxReserveDay"].value, phones, cuisinesIds, paymentTypeIds, clientTypeIds, mealTypeIds, socialLinks);
 
     var str = JSON.stringify(cl);
+
     console.log(str);
+
+    (async () => {
+        const rawResponse = await fetch('https://rbwebapp.azurewebsites.net/api/request', {
+          method: 'POST',
+          mode: 'no-cors', // no-cors, cors, *same-origin
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: str
+        });
+        const content = await rawResponse.status();
+      
+        console.log(content);
+      })();
+
+    // fetch('https://rbwebapp.azurewebsites.net/api/request', {
+    //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    //     mode: 'no-cors', // no-cors, cors, *same-origin
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: str, // тип данных в body должен соответвовать значению заголовка "Content-Type"
+    // }); // парсит JSON ответ в Javascript объект
+}
+
+function sh() {
+    var t = document.getElementById("openTime").value;
+
+    var res = parseInt(t.substring(0, 2)) * 60 + parseInt(t.substring(3));
+    console.log(res);
 }
 
 function addNumber() {
@@ -418,9 +552,9 @@ function addCuisine() {
     select.setAttribute('id', selIN);
     select.setAttribute('name', selIN);
 
-    for (var i = 0; i < cuisinesArr.length; i++) {
+    for (var i = 0; i < cuisinesDict.length; i++) {
         var opt = document.createElement('option');
-        opt.text = cuisinesArr[i];
+        opt.text = cuisinesDict[i].value;
 
         select.appendChild(opt);
     }
@@ -459,9 +593,9 @@ function addPaymentType() {
     select.setAttribute('id', selIN);
     select.setAttribute('name', selIN);
 
-    for (var i = 0; i < paymentTypeArr.length; i++) {
+    for (var i = 0; i < paymentTypeDict.length; i++) {
         var opt = document.createElement('option');
-        opt.text = paymentTypeArr[i];
+        opt.text = paymentTypeDict[i].value;
 
         select.appendChild(opt);
     }
@@ -500,9 +634,9 @@ function addRestaurantType() {
     select.setAttribute('id', selIN);
     select.setAttribute('name', selIN);
 
-    for (var i = 0; i < restaurantTypeArr.length; i++) {
+    for (var i = 0; i < restaurantTypeDict.length; i++) {
         var opt = document.createElement('option');
-        opt.text = restaurantTypeArr[i];
+        opt.text = restaurantTypeDict[i].value;
 
         select.appendChild(opt);
     }
@@ -576,9 +710,9 @@ function addMealType() {
     sel.setAttribute('id', selIN);
     sel.setAttribute('name', selIN);
 
-    for (var i = 0; i < mealTypeArr.length; i++) {
+    for (var i = 0; i < mealTypeDict.length; i++) {
         var opt = document.createElement('option');
-        opt.text = mealTypeArr[i];
+        opt.text = mealTypeDict[i].value;
 
         sel.appendChild(opt);
     }
