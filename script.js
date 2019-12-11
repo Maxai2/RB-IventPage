@@ -456,14 +456,13 @@ function save() {
     (async () => {
         const rawResponse = await fetch('https://rbwebapp.azurewebsites.net/api/request', {
           method: 'POST',
-          mode: 'no-cors', // no-cors, cors, *same-origin
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
           body: str
         });
-        const content = await rawResponse.status();
+        const content = await rawResponse.status;
       
         console.log(content);
       })();
