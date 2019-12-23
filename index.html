@@ -87,10 +87,10 @@
                         </div>
                         <div class="formContainer">
                             <label>Main image </label>
-                            <input type="file" onchange="showPic(this)" id="mainImage" accept="image/*" required>
+                            <input type="file" onchange="showPic(event);" id="mainImage" accept="image/*" required>
                             <input type="hidden" name="imageByteArr" id="imageByteArr">
                             <div class="imgViewCl" style="display: none;" id="imgViewId">
-                                <img id="imageViewer"></img>
+                                <img id="imageViewer" src="#" alt="image"></img>
                             </div>
                         </div>                
                     </div>
@@ -114,9 +114,6 @@
                             <label>Close time: </label> <!--close-->
                             <input type="time" id="closeTime" name="closeTime" required>
                         </div>
-                        <button onclick="sh()">
-                            jh
-                        </button>
                     </div>
                     <hr/>
                     <div class="additionalClass">
@@ -147,13 +144,13 @@
                             <div class="liveMusicClass">
                                 <label>Music: </label> <br>
                                 <label>
-                                    <input type="radio" name="isLiveMusic" id="isLiveMusic" value="null" checked> No <br>
+                                    <input type="radio" name="isLiveMusic" value="null" checked> No <br>
                                 </label>
                                 <label>
-                                    <input type="radio" name="isLiveMusic" id="isLiveMusic" value="false"> Background <br>
+                                    <input type="radio" name="isLiveMusic" value="false"> Background <br>
                                 </label>
                                 <label>
-                                    <input type="radio" name="isLiveMusic" id="isLiveMusic" value="true"> Live 
+                                    <input type="radio" name="isLiveMusic" value="true"> Live 
                                 </label>
                             </div>
                             
@@ -254,6 +251,6 @@
         <h4>@Copyright All right reserved</h5>
     </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnz9pDVpwCIaOTRyb5LamED2OQWJn3SXU&callback=initMap"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA99t8a-S-OJffxtVvUfkLr3xKj8e_cWUo&callback=initMap"></script>
 </body>
 </html>

@@ -199,6 +199,12 @@ function initMap() {
     }
 }
 
+function correctText(text) {
+    var newString = text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+
+    return newString;
+}
+
 function start() {
 
     fetch('https://rbwebapp.azurewebsites.net/api/parameter')
@@ -208,14 +214,15 @@ function start() {
         var selCuis = document.getElementById("selCuis1");
         selCuis.options.length = 0;
 
+        var i = 0;
         for (var key in cui) {
             cuisinesDict.push({
                 key: key,
-                value: cui[key]
+                value: correctText(cui[key])
             });
-            
+
             var opt = document.createElement('option');
-            opt.text = cui[key];
+            opt.text = cuisinesDict[i++].value;
             selCuis.appendChild(opt);
         }
 
@@ -223,14 +230,15 @@ function start() {
         var selPayT = document.getElementById("selPayT1");
         selPayT.options.length = 0;
 
+        i = 0;
         for (var key in pay) {
             paymentTypeDict.push({
                 key: key,
-                value: pay[key]
+                value: correctText(pay[key])
             });
 
             var opt = document.createElement('option');
-            opt.text = pay[key];
+            opt.text = paymentTypeDict[i++].value;
 
             selPayT.appendChild(opt);
         }
@@ -239,14 +247,15 @@ function start() {
         var selRestT = document.getElementById("selRestT1");
         selRestT.options.length = 0;
 
+        i = 0;
         for (var key in res) {
             restaurantTypeDict.push({
                 key: key,
-                value: res[key]
+                value: correctText(res[key])
             });
 
             var opt = document.createElement('option');
-            opt.text = res[key];
+            opt.text = restaurantTypeDict[i++].value;
 
             selRestT.appendChild(opt);
         }
@@ -255,86 +264,27 @@ function start() {
         var selMealT = document.getElementById("selMealT1");
         selMealT.options.length = 0;
 
+        i = 0;
         for (var key in mea) {
             mealTypeDict.push({
                 key: key,
-                value: mea[key]
+                value: correctText(mea[key])
             });
 
             var opt = document.createElement('option');
-            opt.text = mea[key];
+            opt.text = mealTypeDict[i++].value;
 
             selMealT.appendChild(opt);
         }
     });
-
-    // var selCuis = document.getElementById("selCuis1");
-    
-    // selCuis.options.length = 0;
-
-    // for (var i = 0; i < cuisinesArr.length; i++) {
-    //     var opt = document.createElement('option');
-    //     opt.text = cuisinesArr[i];
-
-    //     selCuis.appendChild(opt);
-    // }
-
-    // var selPayT = document.getElementById("selPayT1");
-
-    // selPayT.options.length = 0;
-
-    // for (var i = 0; i < paymentTypeArr.length; i++) {
-    //     var opt = document.createElement('option');
-    //     opt.text = paymentTypeArr[i];
-
-    //     selPayT.appendChild(opt);
-    // }
-
-    // var selRestT = document.getElementById("selRestT1");
-
-    // selRestT.options.length = 0;
-
-    // for (var i = 0; i < restaurantTypeArr.length; i++) {
-    //     var opt = document.createElement('option');
-    //     opt.text = restaurantTypeArr[i];
-
-    //     selRestT.appendChild(opt);
-    // }
-
-    // var selMealT = document.getElementById("selMealT1");
-
-    // selMealT.options.length = 0;
-
-    // for (var i = 0; i < mealTypeArr.length; i++) {
-    //     var opt = document.createElement('option');
-    //     opt.text = mealTypeArr[i];
-
-    //     selMealT.appendChild(opt);
-    // }
 }
 
-// function showPic(img) {
-//     var src = img.files[0].name;
-    
-//     document.getElementById('imageViewer').setAttribute('src', src);
-//     document.getElementById('imageByteArr').value = arr;
-    
-//     var i = new Image();
-    
-//     // i.setAttribute('crossOrigin', 'anonymous');
-//     i.setAttribute('src', src);
-    
-//     var arr = getBase64Image(i);
-    
-//     console.log(arr);
-// }
-
-function showPic() {
+function showPic(input) {
     document.getElementById('imgViewId').style.display = "grid";
 
+    document.getElementById('imageViewer').setAttribute("src", URL.createObjectURL(input.target.files[0]));
+
     var fileList = document.getElementById("mainImage").files;
-    
-    document.getElementById('imageViewer').setAttribute('src', fileList[0].name);
 
     var fileReader = new FileReader();
 
@@ -351,16 +301,9 @@ function showPic() {
             }
             
             document.getElementById('imageByteArr').value = window.btoa( binary );
-            // console.log(window.btoa( binary ));
        };
     }
 }
-
-// function cancel() {
-//     document.getElementById("fPage").style.display = "block"
-
-//     document.getElementById("bPage").style.display = "none";
-// }
 
 function save() {
     event.preventDefault();
@@ -476,13 +419,6 @@ function save() {
     //     },
     //     body: str, // тип данных в body должен соответвовать значению заголовка "Content-Type"
     // }); // парсит JSON ответ в Javascript объект
-}
-
-function sh() {
-    var t = document.getElementById("openTime").value;
-
-    var res = parseInt(t.substring(0, 2)) * 60 + parseInt(t.substring(3));
-    console.log(res);
 }
 
 function addNumber() {
