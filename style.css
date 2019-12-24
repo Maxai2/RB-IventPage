@@ -3,6 +3,21 @@ body {
   padding: 0;
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 }
+body .noselect {
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
+                                        supported by Chrome, Opera and Firefox */
+}
 body .imgClass {
   background-image: url(web-01.jpg);
   background-repeat: no-repeat;
@@ -28,7 +43,7 @@ body .imgClass .startClass button {
   font-size: 20px;
 }
 body .imgClass .chipsContainerClass {
-  margin: 550px 330px 0 330px;
+  margin: 850px 330px 0 330px;
 }
 body .imgClass .chipsContainerClass h2 {
   color: white;
@@ -49,7 +64,7 @@ body .imgClass .chipsContainerClass .chipsClass {
   width: auto;
   display: grid;
   grid-template-columns: auto auto auto;
-  padding-top: 20px;
+  padding-top: 50px;
 }
 body .imgClass .chipsContainerClass .chipsClass .chipContClass {
   background: white;
@@ -98,8 +113,7 @@ body .clRegClass h2 {
   margin: 0;
 }
 body .clientFormClass {
-  background-image: url(formBckg.png);
-  background-repeat: round;
+  background-color: black;
 }
 body .clientFormClass form .formDivCl {
   margin: 0 auto;
@@ -217,6 +231,36 @@ body .clientFormClass form .formDivCl .typesClass .typesContainer input[type=tex
 body .clientFormClass form .formDivCl .typesClass .typesContainer button {
   margin-left: 5px;
   width: 50px;
+}
+body .clientFormClass form .formDivCl .typesClass .multiselect {
+  width: 200px;
+}
+body .clientFormClass form .formDivCl .typesClass .multiselect .selectBox {
+  position: relative;
+}
+body .clientFormClass form .formDivCl .typesClass .multiselect .selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+body .clientFormClass form .formDivCl .typesClass .multiselect .selectBox .overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+body .clientFormClass form .formDivCl .typesClass .multiselect .checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+  position: absolute;
+  background: black;
+  padding: 5px;
+}
+body .clientFormClass form .formDivCl .typesClass .multiselect .checkboxes label {
+  display: block;
+}
+body .clientFormClass form .formDivCl .typesClass .multiselect .checkboxes label:hover {
+  background-color: #1e90ff;
 }
 body .clientFormClass form .formDivCl .additInfoClass {
   display: flex;

@@ -107,11 +107,11 @@
                     <hr/>
                     <div class="timeContainer">
                         <div class="formContainer">
-                            <label>Open time: </label> <!--open-->
+                            <label>Open time: </label>
                             <input type="time" id="openTime" name="openTime" required>
                         </div>
                         <div class="formContainer">
-                            <label>Close time: </label> <!--close-->
+                            <label>Close time: </label>
                             <input type="time" id="closeTime" name="closeTime" required>
                         </div>
                     </div>
@@ -178,20 +178,16 @@
                         <div>
                             <label>Сuisines: </label>
 
-                            <div class="selectBox" onclick="showCheckboxes()">
-                                <select>
-                                  <option>Select an option</option>
-                                </select>
-                                <div class="overSelect"></div>
-                              </div>
-                              <div id="checkboxes">
-                                <!-- <label for="one">
-                                  <input type="checkbox" id="one" />First checkbox</label>
-                                <label for="two">
-                                  <input type="checkbox" id="two" />Second checkbox</label>
-                                <label for="three">
-                                  <input type="checkbox" id="three" />Third checkbox</label> -->
-                              </div>
+                            <div class="multiselect">
+                                <div class="selectBox" onclick="showCheckboxes('cuisCheckboxes')">
+                                    <select>
+                                        <option id="cuisString">Select an option</option>
+                                    </select>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div class="checkboxes" id="cuisCheckboxes">
+                                </div>
+                            </div>
 
                             <div id="idCuisineContainer"> 
                                 <div class="typesContainer">

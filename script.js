@@ -174,11 +174,11 @@ function showLocation(position) {
 
     marker.setMap(map);
     
-    map.addListener('center_changed', function() {
-            window.setTimeout(function() {
-            map.panTo(marker.getPosition());
-        }, 3000);
-    });
+    // map.addListener('center_changed', function() {
+    //         window.setTimeout(function() {
+    //         map.panTo(marker.getPosition());
+    //     }, 3000);
+    // });
 }
 
 function errorHandler(err) {
@@ -205,14 +205,42 @@ function correctText(text) {
     return newString;
 }
 
+var expandedCuis = false;
+
+function showCheckboxes(id) {
+    var checkboxes = document.getElementById(id);
+
+    checkboxes.style.display = !expandedCuis ? "block" : "none";
+
+    expandedCuis = !expandedCuis;
+}
+
+var cuisString = [];
+var paymentTypeString = [];
+var restTypeString = [];
+var mealTypeString = [];
+
+function selBox(sel, arr, id) {
+    sel.checked ? arr.push(sel.value) : arr.splice(arr.indexOf(sel.value), 1);
+    
+    var workStr = document.getElementById(id);
+    workStr.text = "";
+    
+    for (var i = 0; i < arr.length; i++) {
+        workStr.text += arr[i] + ";\xa0";
+    }
+    
+    workStr.setAttribute('title', workStr.text);
+}
+
 function start() {
 
     fetch('https://rbwebapp.azurewebsites.net/api/parameter')
     .then(response => response.json())
     .then(arr => {
         var cui = arr["cuisines"];
-        var selCuis = document.getElementById("selCuis1");
-        selCuis.options.length = 0;
+        var selCuis = document.getElementById("cuisCheckboxes");
+        // selCuis.options.length = 0;
 
         var i = 0;
         for (var key in cui) {
@@ -221,9 +249,24 @@ function start() {
                 value: correctText(cui[key])
             });
 
-            var opt = document.createElement('option');
-            opt.text = cuisinesDict[i++].value;
-            selCuis.appendChild(opt);
+            var inp = document.createElement('input');
+            inp.setAttribute('type', 'checkbox');
+            inp.setAttribute('id', cuisinesDict[i].value);
+            inp.setAttribute('value', cuisinesDict[i].value);
+            inp.setAttribute('onchange', "selBox(this, cuisString, 'cuisString')");
+            
+            var lbl = document.createElement('label');
+            lbl.setAttribute('for', cuisinesDict[i].value);
+            
+            lbl.appendChild(inp);
+            lbl.appendChild(document.createTextNode(cuisinesDict[i++].value));
+            lbl.setAttribute('class', 'noselect');
+
+            selCuis.appendChild(lbl);
+
+            // var opt = document.createElement('option');
+            // opt.text = cuisinesDict[i++].value;
+            // selCuis.appendChild(opt);
         }
 
         var pay = arr["paymentTypes"];
@@ -316,19 +359,11 @@ function save() {
         phones.push(new Phone("+994" + form.elements["number" + (i + 1)].value, form.elements["isShow" + (i + 1)].checked));
     }
 
-    // for(var i = 0; i < countNumbers; i++) {
-    //     phones.push(new Phone("+994" + document.getElementById("number" + (i + 1)).value, document.getElementById("isShow" + (i + 1)).checked));
-    // }
-
     var cuisinesIds = [];
 
     for (var i = 0; i < countCuisines; i++) {
         cuisinesIds.push(cuisinesDict[form.elements["selCuis" + (i + 1)].selectedIndex].key);
     }
-
-    // for (var i = 0; i < countCuisines; i++) {
-    //     cuisinesIds.push(document.getElementById("selCuis" + (i + 1)).selectedIndex);
-    // }
 
     var paymentTypeIds = [];
 
@@ -336,19 +371,11 @@ function save() {
         paymentTypeIds.push(paymentTypeDict[form.elements["selPayT" + (i + 1)].selectedIndex].key);
     }
 
-    // for (var i = 0; i < countPaymentType; i++) {
-    //     paymentTypeIds.push(document.getElementById("selPayT" + (i + 1)).selectedIndex);
-    // }
-
     var clientTypeIds = [];
 
     for (var i = 0; i < countRestaurantType; i++) {
         clientTypeIds.push(restaurantTypeDict[form.elements["selRestT" + (i + 1)].selectedIndex].key);
     }
-
-    // for (var i = 0; i < countRestaurantType; i++) {
-    //     clientTypeIds.push(document.getElementById("selRestT" + (i + 1)).selectedIndex);
-    // }
 
     var mealTypeIds = [];
 
@@ -356,19 +383,11 @@ function save() {
         mealTypeIds.push(mealTypeDict[form.elements["selMealT" + (i + 1)].selectedIndex].key);
     }
 
-    // for (var i = 0; i < countMealType; i++) {
-    //     mealTypeIds.push(document.getElementById("selMealT" + (i + 1)).selectedIndex);
-    // }
-
     var socialLinks = [];
 
     for (var i = 0; i < countSocialLink; i++) {
         socialLinks.push(form.elements["socLink" + (i + 1)].value);
     }
-
-    // for (var i = 0; i < countSocialLink; i++) {
-    //     socialLinks.push(document.getElementById("socLink" + (i + 1)).value);
-    // }
 
     var lmV;
     switch (form.elements["isLiveMusic"].value) {
@@ -408,17 +427,7 @@ function save() {
         const content = await rawResponse.status;
       
         console.log(content);
-      })();
-
-    // fetch('https://rbwebapp.azurewebsites.net/api/request', {
-    //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    //     mode: 'no-cors', // no-cors, cors, *same-origin
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: str, // тип данных в body должен соответвовать значению заголовка "Content-Type"
-    // }); // парсит JSON ответ в Javascript объект
+    })();
 }
 
 function addNumber() {
