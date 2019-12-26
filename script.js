@@ -229,6 +229,10 @@ function selBox(sel, arr, id) {
     for (var i = 0; i < arr.length; i++) {
         workStr.text += arr[i] + ";\xa0";
     }
+
+    if (workStr.text == "") {
+        workStr.text = "Select an option";
+    }
     
     workStr.setAttribute('title', workStr.text);
 }
@@ -263,10 +267,6 @@ function start() {
             lbl.setAttribute('class', 'noselect');
 
             selCuis.appendChild(lbl);
-
-            // var opt = document.createElement('option');
-            // opt.text = cuisinesDict[i++].value;
-            // selCuis.appendChild(opt);
         }
 
         var pay = arr["paymentTypes"];
@@ -348,6 +348,14 @@ function showPic(input) {
     }
 }
 
+function getKeyByVal(dict, val) {
+    for (var key in dict) {
+        if (dict[key].value == val) {
+            return dict[key].key;
+        }
+    }
+}
+
 function save() {
     event.preventDefault();
 
@@ -360,9 +368,8 @@ function save() {
     }
 
     var cuisinesIds = [];
-
-    for (var i = 0; i < countCuisines; i++) {
-        cuisinesIds.push(cuisinesDict[form.elements["selCuis" + (i + 1)].selectedIndex].key);
+    for (var i = 0; i < cuisString.length; i++) {
+        cuisinesIds.push(getKeyByVal(cuisinesDict, cuisString[i]));
     }
 
     var paymentTypeIds = [];
@@ -481,47 +488,6 @@ function deleteNumber() {
 
     divPar.removeChild(div);
     countNumbers--;
-}
-
-function addCuisine() {
-    var divCuis = document.getElementById("idCuisineContainer");
-
-    var div = document.createElement('div');
-    var divId = "divCuis" + ++countCuisines;
-    div.setAttribute('id', divId);
-    div.setAttribute('class', 'typesContainer');
-
-    var select = document.createElement('select');
-    var selIN = "selCuis" + countCuisines;
-    select.setAttribute('id', selIN);
-    select.setAttribute('name', selIN);
-
-    for (var i = 0; i < cuisinesDict.length; i++) {
-        var opt = document.createElement('option');
-        opt.text = cuisinesDict[i].value;
-
-        select.appendChild(opt);
-    }
-
-    div.appendChild(select);
-
-    var buttonD = document.createElement('button');
-    buttonD.innerHTML = "-";
-    buttonD.setAttribute('id', countCuisines);
-    buttonD.addEventListener("click", deleteCuisine);
-    buttonD.type = "button";
-
-    div.appendChild(buttonD);
-
-    divCuis.appendChild(div);
-}
-
-function deleteCuisine() {
-    var divPar = document.getElementById("idCuisineContainer");
-    var div = document.getElementById("divCuis" + this.getAttribute('id'));
-
-    divPar.removeChild(div);
-    countCuisines--;
 }
 
 function addPaymentType() {

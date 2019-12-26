@@ -250,11 +250,11 @@ body .clientFormClass form .formDivCl .typesClass .multiselect .selectBox .overS
   bottom: 0;
 }
 body .clientFormClass form .formDivCl .typesClass .multiselect .checkboxes {
+  width: 200px;
   display: none;
   border: 1px #dadada solid;
   position: absolute;
-  background: black;
-  padding: 5px;
+  background: white;
 }
 body .clientFormClass form .formDivCl .typesClass .multiselect .checkboxes label {
   display: block;
