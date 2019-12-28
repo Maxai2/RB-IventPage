@@ -205,14 +205,36 @@ function correctText(text) {
     return newString;
 }
 
-var expandedCuis = false;
+var expCuis = false;
+var expPayT = false;
+var expResT = false;
+var expMealT = false;
 
-function showCheckboxes(id) {
+function showCheckboxes(id, sw) {
     var checkboxes = document.getElementById(id);
 
-    checkboxes.style.display = !expandedCuis ? "block" : "none";
-
-    expandedCuis = !expandedCuis;
+    switch(sw) {
+        case 'cuis':
+            checkboxes.style.display = !expCuis ? "block" : "none";
+        
+            expCuis = !expCuis;
+            break;
+        case 'payT':
+            checkboxes.style.display = !expPayT ? "block" : "none";
+        
+            expPayT = !expPayT;
+            break;
+        case 'resT':
+            checkboxes.style.display = !expResT ? "block" : "none";
+        
+            expResT = !expResT;
+            break;
+        case 'mealT':
+            checkboxes.style.display = !expMealT ? "block" : "none";
+        
+            expMealT = !expMealT;
+            break;
+    }
 }
 
 var cuisString = [];
@@ -220,10 +242,12 @@ var paymentTypeString = [];
 var restTypeString = [];
 var mealTypeString = [];
 
-function selBox(sel, arr, id) {
+function selBox(sel, arr, idForString, idForTitle) {
     sel.checked ? arr.push(sel.value) : arr.splice(arr.indexOf(sel.value), 1);
     
-    var workStr = document.getElementById(id);
+    var workStr = document.getElementById(idForString);
+    var title = document.getElementById(idForTitle);
+    title.text = "";
     workStr.text = "";
     
     for (var i = 0; i < arr.length; i++) {
@@ -232,9 +256,52 @@ function selBox(sel, arr, id) {
 
     if (workStr.text == "") {
         workStr.text = "Select an option";
+        title.removeAttribute('title');
+    } else {   
+        title.setAttribute('title', workStr.text);
     }
-    
-    workStr.setAttribute('title', workStr.text);
+}
+
+function fillCheboxes(cbId, sDict, dict, type) {
+
+    var i = 0;
+    var selCuis = document.getElementById(cbId);
+
+    for (var key in sDict) {
+        dict.push({
+            key: key,
+            value: correctText(sDict[key])
+        });
+
+        var inp = document.createElement('input');
+        inp.setAttribute('type', 'checkbox');
+        inp.setAttribute('id', dict[i].value);
+        inp.setAttribute('value', dict[i].value);
+
+        switch(type) {
+            case 'cuis': 
+                inp.setAttribute('onchange', "selBox(this, cuisString, 'cuisString',  'cuisTitle')");
+                break;
+            case 'payT':
+                inp.setAttribute('onchange', "selBox(this, paymentTypeString, 'payTString', 'payTTitle')");
+                break;
+            case 'resT':
+                inp.setAttribute('onchange', "selBox(this, restTypeString, 'restTString', 'restTTitle')");
+                break;
+            case 'mealT':
+                inp.setAttribute('onchange', "selBox(this, mealTypeString, 'mealTString', 'mealTTitle')");
+                break;
+        }
+        
+        var lbl = document.createElement('label');
+        lbl.setAttribute('for', dict[i].value);
+        
+        lbl.appendChild(inp);
+        lbl.appendChild(document.createTextNode(dict[i++].value));
+        lbl.setAttribute('class', 'noselect');
+
+        selCuis.appendChild(lbl);
+    }
 }
 
 function start() {
@@ -243,82 +310,20 @@ function start() {
     .then(response => response.json())
     .then(arr => {
         var cui = arr["cuisines"];
-        var selCuis = document.getElementById("cuisCheckboxes");
-        // selCuis.options.length = 0;
 
-        var i = 0;
-        for (var key in cui) {
-            cuisinesDict.push({
-                key: key,
-                value: correctText(cui[key])
-            });
-
-            var inp = document.createElement('input');
-            inp.setAttribute('type', 'checkbox');
-            inp.setAttribute('id', cuisinesDict[i].value);
-            inp.setAttribute('value', cuisinesDict[i].value);
-            inp.setAttribute('onchange', "selBox(this, cuisString, 'cuisString')");
-            
-            var lbl = document.createElement('label');
-            lbl.setAttribute('for', cuisinesDict[i].value);
-            
-            lbl.appendChild(inp);
-            lbl.appendChild(document.createTextNode(cuisinesDict[i++].value));
-            lbl.setAttribute('class', 'noselect');
-
-            selCuis.appendChild(lbl);
-        }
+        fillCheboxes('cuisCheckboxes', cui, cuisinesDict, 'cuis');
 
         var pay = arr["paymentTypes"];
-        var selPayT = document.getElementById("selPayT1");
-        selPayT.options.length = 0;
 
-        i = 0;
-        for (var key in pay) {
-            paymentTypeDict.push({
-                key: key,
-                value: correctText(pay[key])
-            });
-
-            var opt = document.createElement('option');
-            opt.text = paymentTypeDict[i++].value;
-
-            selPayT.appendChild(opt);
-        }
+        fillCheboxes('payTypeCheckboxes', pay, paymentTypeDict, 'payT');
 
         var res = arr["clientTypes"];
-        var selRestT = document.getElementById("selRestT1");
-        selRestT.options.length = 0;
 
-        i = 0;
-        for (var key in res) {
-            restaurantTypeDict.push({
-                key: key,
-                value: correctText(res[key])
-            });
-
-            var opt = document.createElement('option');
-            opt.text = restaurantTypeDict[i++].value;
-
-            selRestT.appendChild(opt);
-        }
+        fillCheboxes('resTypeCheckboxes', res, restaurantTypeDict, 'resT');
         
         var mea = arr["mealTypes"];
-        var selMealT = document.getElementById("selMealT1");
-        selMealT.options.length = 0;
 
-        i = 0;
-        for (var key in mea) {
-            mealTypeDict.push({
-                key: key,
-                value: correctText(mea[key])
-            });
-
-            var opt = document.createElement('option');
-            opt.text = mealTypeDict[i++].value;
-
-            selMealT.appendChild(opt);
-        }
+        fillCheboxes('mealTypeCheckboxes', mea, mealTypeDict, 'mealT');
     });
 }
 

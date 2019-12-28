@@ -179,7 +179,7 @@
                             <label>Сuisines: </label>
 
                             <div class="multiselect">
-                                <div class="selectBox" onclick="showCheckboxes('cuisCheckboxes')">
+                                <div class="selectBox" onclick="showCheckboxes('cuisCheckboxes', 'cuis')" id="cuisTitle">
                                     <select>
                                         <option id="cuisString">Select an option</option>
                                     </select>
@@ -192,33 +192,45 @@
                         <hr>
                         <div>
                             <label>Payment type: </label>
-                            <div id="idPaymentTypeContainer">
-                                <div class="typesContainer">
-                                    <select id="selPayT1" name="selPayT1">
+
+                            <div class="multiselect">
+                                <div class="selectBox" onclick="showCheckboxes('payTypeCheckboxes', 'payT')" id="payTTitle">
+                                    <select>
+                                        <option id="payTString">Select an option</option>
                                     </select>
-                                    <button onclick="addPaymentType()" type="button">+</button>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div class="checkboxes" id="payTypeCheckboxes">
                                 </div>
                             </div>
                         </div>
                         <hr>
                         <div>
                             <label>Restaurant type: </label>
-                            <div id="idRestaurantTypeContainer">
-                                <div class="typesContainer">
-                                    <select id="selRestT1" name="selRestT1">
+
+                            <div class="multiselect">
+                                <div class="selectBox" onclick="showCheckboxes('resTypeCheckboxes', 'resT')" id="resTTitle">
+                                    <select>
+                                        <option id="resTString">Select an option</option>
                                     </select>
-                                    <button onclick="addRestaurantType()" type="button">+</button>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div class="checkboxes" id="resTypeCheckboxes">
                                 </div>
                             </div>
                         </div>
                         <hr>
                         <div>
                             <label>Meal type: </label>
-                            <div id="idMealTypeContainer">
-                                <div class="typesContainer">
-                                    <select id="selMealT1" name="selMealT1">
+
+                            <div class="multiselect">
+                                <div class="selectBox" onclick="showCheckboxes('mealTypeCheckboxes', 'mealT')" id="mealTTitle">
+                                    <select>
+                                        <option id="mealTString">Select an option</option>
                                     </select>
-                                    <button onclick="addMealType()" type="button">+</button>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div class="checkboxes" id="mealTypeCheckboxes">
                                 </div>
                             </div>
                         </div>
