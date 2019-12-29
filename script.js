@@ -161,7 +161,7 @@ function showLocation(position) {
     var center = new google.maps.LatLng(latitude, longitude);
 
     var mapOptions = {
-        zoom: 12,
+        zoom: 16,
         center: center,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -286,7 +286,7 @@ function fillCheboxes(cbId, sDict, dict, type) {
                 inp.setAttribute('onchange', "selBox(this, paymentTypeString, 'payTString', 'payTTitle')");
                 break;
             case 'resT':
-                inp.setAttribute('onchange', "selBox(this, restTypeString, 'restTString', 'restTTitle')");
+                inp.setAttribute('onchange', "selBox(this, restTypeString, 'resTString', 'resTTitle')");
                 break;
             case 'mealT':
                 inp.setAttribute('onchange', "selBox(this, mealTypeString, 'mealTString', 'mealTTitle')");
@@ -380,19 +380,19 @@ function save() {
     var paymentTypeIds = [];
 
     for (var i = 0; i < countPaymentType; i++) {
-        paymentTypeIds.push(paymentTypeDict[form.elements["selPayT" + (i + 1)].selectedIndex].key);
+        paymentTypeIds.push(getKeyByVal(paymentTypeDict, paymentTypeString[i]));
     }
 
     var clientTypeIds = [];
 
     for (var i = 0; i < countRestaurantType; i++) {
-        clientTypeIds.push(restaurantTypeDict[form.elements["selRestT" + (i + 1)].selectedIndex].key);
+        clientTypeIds.push(getKeyByVal(restaurantTypeDict, restTypeString[i]));
     }
 
     var mealTypeIds = [];
 
     for (var i = 0; i < countMealType; i++) {
-        mealTypeIds.push(mealTypeDict[form.elements["selMealT" + (i + 1)].selectedIndex].key);
+        mealTypeIds.push(getKeyByVal(mealTypeDict, mealTypeString[i]));
     }
 
     var socialLinks = [];
@@ -495,88 +495,6 @@ function deleteNumber() {
     countNumbers--;
 }
 
-function addPaymentType() {
-    var divPayType = document.getElementById("idPaymentTypeContainer");
-
-    var div = document.createElement('div');
-    var divId = "divPayT" + ++countPaymentType;
-    div.setAttribute('id', divId);
-    div.setAttribute('class', 'typesContainer');
-
-    var select = document.createElement('select');
-    var selIN = "selPayT" + countPaymentType;
-    select.setAttribute('id', selIN);
-    select.setAttribute('name', selIN);
-
-    for (var i = 0; i < paymentTypeDict.length; i++) {
-        var opt = document.createElement('option');
-        opt.text = paymentTypeDict[i].value;
-
-        select.appendChild(opt);
-    }
-
-    div.appendChild(select);
-
-    var buttonD = document.createElement('button');
-    buttonD.innerHTML = "-";
-    buttonD.setAttribute('id', countPaymentType);
-    buttonD.addEventListener("click", deletePaymentType);
-    buttonD.type = "button";
-
-    div.appendChild(buttonD);
-
-    divPayType.appendChild(div);
-}
-
-function deletePaymentType() {
-    var divPar = document.getElementById("idPaymentTypeContainer");
-    var div = document.getElementById("divPayT" + this.getAttribute('id'));
-
-    divPar.removeChild(div);
-    countPaymentType--;
-}
-
-function addRestaurantType() {
-    var divRestT = document.getElementById("idRestaurantTypeContainer");
-
-    var div = document.createElement('div');
-    var divId = "divRestT" + ++countRestaurantType;
-    div.setAttribute('id', divId);
-    div.setAttribute('class', 'typesContainer');
-
-    var select = document.createElement('select');
-    var selIN = "selRestT" + countRestaurantType;
-    select.setAttribute('id', selIN);
-    select.setAttribute('name', selIN);
-
-    for (var i = 0; i < restaurantTypeDict.length; i++) {
-        var opt = document.createElement('option');
-        opt.text = restaurantTypeDict[i].value;
-
-        select.appendChild(opt);
-    }
-
-    div.appendChild(select);
-
-    var buttonD = document.createElement('button');
-    buttonD.innerHTML = "-";
-    buttonD.setAttribute('id', countRestaurantType);
-    buttonD.addEventListener("click", deleteRestaurantType);
-    buttonD.type = "button";
-
-    div.appendChild(buttonD);
-
-    divRestT.appendChild(div);
-}
-
-function deleteRestaurantType() {
-    var divPar = document.getElementById("idRestaurantTypeContainer");
-    var div = document.getElementById("divRestT" + this.getAttribute('id'));
-
-    divPar.removeChild(div);
-    countRestaurantType--;
-}
-
 function addSocLink() {
     var divSocLink = document.getElementById("idSocialLinksContainer");
 
@@ -610,47 +528,6 @@ function deleteSocLink() {
 
     divPar.removeChild(div);
     countSocialLink--;
-}
-
-function addMealType() {
-    var divMealT = document.getElementById("idMealTypeContainer");
-
-    var div = document.createElement('div');
-    var divId = "divMealT" + ++countMealType;
-    div.setAttribute('id', divId);
-    div.setAttribute('class', 'typesContainer');
-
-    var sel = document.createElement('select');
-    var selIN = "selMealT" + countMealType;
-    sel.setAttribute('id', selIN);
-    sel.setAttribute('name', selIN);
-
-    for (var i = 0; i < mealTypeDict.length; i++) {
-        var opt = document.createElement('option');
-        opt.text = mealTypeDict[i].value;
-
-        sel.appendChild(opt);
-    }
-
-    div.appendChild(sel);
-
-    var buttonD = document.createElement('button');
-    buttonD.innerHTML = "-";
-    buttonD.setAttribute('id', countMealType);
-    buttonD.addEventListener("click", deleteMealType);
-    buttonD.type = "button";
-
-    div.appendChild(buttonD);
-
-    divMealT.appendChild(div);
-}
-
-function deleteMealType() {
-    var divPar = document.getElementById("idMealTypeContainer");
-    var div = document.getElementById("divMealT" + this.getAttribute('id'));
-
-    divPar.removeChild(div);
-    countMealType--;
 }
 
 function findByCoord() {
