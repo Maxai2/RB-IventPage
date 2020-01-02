@@ -143,12 +143,28 @@ var countMealType = 1;
 
 var maxLat = Math.atan(Math.sinh(Math.PI)) * 180 / Math.PI;
 
-var map = 0;
+var map;
+var marker;
 
 function scrollToForm() {
     var elem = document.getElementById("clForm");
 
     elem.scrollIntoView({block: "start", behavior: "smooth"});
+}
+
+function placeMarkerAndPanTo(latLng, map) {
+    marker.setMap(null);
+    marker = new google.maps.Marker({
+        position: latLng,
+        map: map
+    });
+    
+    document.getElementById('lat').value = latLng.lat();
+    document.getElementById('long').value = latLng.lng();
+
+    console.log(latLng.lat(), latLng.lng());
+
+    map.panTo(latLng);
 }
 
 function showLocation(position) {
@@ -168,17 +184,19 @@ function showLocation(position) {
 
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
 
-    var marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
         position: center
     });
 
     marker.setMap(map);
     
-    // map.addListener('center_changed', function() {
-    //         window.setTimeout(function() {
-    //         map.panTo(marker.getPosition());
-    //     }, 3000);
-    // });
+    map.addListener('click', function(e) {
+        placeMarkerAndPanTo(e.latLng, map);
+    });
+}
+
+function curLoc() {    
+    initMap();
 }
 
 function errorHandler(err) {
@@ -439,10 +457,24 @@ function save() {
         const content = await rawResponse.status;
       
         console.log(content);
+
+        if (content == 200) {
+            alert('Your response was successfully sent!');
+
+            setTimeout(() => {}, 5000);
+
+            document.location.reload(true);
+        } else {
+            alert('Something went wrong!');
+        }
     })();
 }
 
 function addNumber() {
+    if (countNumbers == 4) {
+        return;
+    }
+
     var divCont = document.getElementById("idNumberContainer");
     
     var div = document.createElement('div');
@@ -496,6 +528,10 @@ function deleteNumber() {
 }
 
 function addSocLink() {
+    if (countSocialLink == 4) {
+        return;
+    }
+
     var divSocLink = document.getElementById("idSocialLinksContainer");
 
     var div = document.createElement('div');
@@ -528,46 +564,4 @@ function deleteSocLink() {
 
     divPar.removeChild(div);
     countSocialLink--;
-}
-
-function findByCoord() {
-    // Get lat and lng values from input fields
-    var lat = document.getElementById('lat').value;
-    var lng = document.getElementById('long').value;
-
-    // Validate user input as numbers
-    lat = (!isNumber(lat) ? 0 : lat);
-    lng = (!isNumber(lng) ? 0 : lng);
-
-    // Validate user input as valid lat/lng values
-    lat = latRange(lat);
-    lng = lngRange(lng);
-
-    // Replace input values
-    document.getElementById('lat').value = lat;
-    document.getElementById('lng').value = lng;
-
-    // Create LatLng object
-    var mapCenter = new google.maps.LatLng(lat, long);
-    
-    new google.maps.Marker({
-        position: mapCenter,
-        title: 'Marker title',
-        map: map
-    });
-
-    // Center map
-    map.setCenter(mapCenter);
-}
-
-function isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
-}
-
-function latRange(n) {
-    return Math.min(Math.max(parseInt(n), -maxLat), maxLat);
-}
-
-function lngRange(n) {
-    return Math.min(Math.max(parseInt(n), -180), 180);
 }

@@ -209,6 +209,7 @@ body .clientFormClass form .formDivCl .additionalClass .secondInfoClass .formCon
 body .clientFormClass form .formDivCl .typesClass .numberContainer {
   display: grid;
   grid-template-columns: 40px auto 110px 25px 25px;
+  margin: 5px;
 }
 body .clientFormClass form .formDivCl .typesClass .numberContainer input[type=text] {
   margin: 0 10px;
