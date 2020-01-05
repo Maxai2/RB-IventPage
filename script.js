@@ -162,7 +162,7 @@ function placeMarkerAndPanTo(latLng, map) {
     document.getElementById('lat').value = latLng.lat();
     document.getElementById('long').value = latLng.lng();
 
-    console.log(latLng.lat(), latLng.lng());
+    // console.log(latLng.lat(), latLng.lng());
 
     map.panTo(latLng);
 }
@@ -170,6 +170,8 @@ function placeMarkerAndPanTo(latLng, map) {
 function showLocation(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
+
+    console.log(latitude, longitude);
 
     document.getElementById('lat').value = latitude;
     document.getElementById('long').value = longitude;
@@ -183,6 +185,11 @@ function showLocation(position) {
     };
 
     map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+    // map.addMarker({
+    //     lat: latitude,
+    //     lng: longitude
+    // });
 
     marker = new google.maps.Marker({
         position: center
