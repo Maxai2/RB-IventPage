@@ -171,7 +171,7 @@ function showLocation(position) {
     var latitude = position.coords.latitude;
     var longitude = position.coords.longitude;
 
-    console.log(latitude, longitude);
+    // console.log(latitude, longitude);
 
     document.getElementById('lat').value = latitude;
     document.getElementById('long').value = longitude;
