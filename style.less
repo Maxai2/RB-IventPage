@@ -1,92 +1,102 @@
 body {
-    margin: 0;
-    padding: 0;
+    margin     : 0;
+    padding    : 0;
     font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
 
     .noselect {
-        -webkit-touch-callout: none; /* iOS Safari */
-            -webkit-user-select: none; /* Safari */
-            -khtml-user-select: none; /* Konqueror HTML */
-                -moz-user-select: none; /* Old versions of Firefox */
-                -ms-user-select: none; /* Internet Explorer/Edge */
-                    user-select: none; /* Non-prefixed version, currently
+        -webkit-touch-callout: none;
+        /* iOS Safari */
+        -webkit-user-select: none;
+        /* Safari */
+        -khtml-user-select: none;
+        /* Konqueror HTML */
+        -moz-user-select: none;
+        /* Old versions of Firefox */
+        -ms-user-select: none;
+        /* Internet Explorer/Edge */
+        user-select: none;
+        /* Non-prefixed version, currently
                                         supported by Chrome, Opera and Firefox */
     }
 
     .imgClass {
-        background-image: url(newView/web-fon-01-01.jpg);
-        background-repeat: no-repeat; 
-        background-size: cover;
-        
-        .startClass {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            grid-template-rows: auto auto auto;
-            // width: 500px;
-            margin: 50px 360px 0 360px;
+        background-image : url(newView/web-fon-01-01.jpg);
+        background-repeat: no-repeat;
+        background-size  : cover;
 
-            imgCont {
-                grid-column: 1;
-                grid-row: 1 / span 2;
+        .startClass {
+            margin-top    : 200px;
+            margin-left   : 150px;
+            display       : flex;
+            flex-direction: row;
+
+            .imgCont {
+                margin-right: 60px;
+
 
                 img {
-                    width: 110px; 
-                    margin: 20px; 
+                    width: 150px;
                 }
             }
 
-            a {
-                color: #E41C66;
-                border-bottom: 1px dotted #E41C66;
-                text-decoration: none;
-                grid-column: 2;
-            }
+            .pabutCont {
+                p {
+                    width : 500px;
+                    margin: 0;
+                }
 
-            button {
-                grid-column: 2;
-                background-image: linear-gradient(to right, #FE9F6C, #E41C66);
-                border: none;
-                color: white;
-                padding: 5px 50px;
-                font-size: 20px;
+                a {
+                    color             : black;
+                    border-bottom     : 1px solid black;
+                    text-decoration   : none;
+                    margin-top        : 10px;
+                }
+
+                button {
+                    background-color: transparent;
+                    color           : white;
+                    padding         : 5px 50px;
+                    font-size       : 20px;
+                    margin-top      : 50px;
+                }
             }
         }
 
-        .chipsContainerClass { 
-            margin: 850px 330px 0 330px;
+        .chipsContainerClass {
+            margin: 600px 330px 0 330px;
 
-            h2 { 
-                color: white;
-                text-align: center;
-                font-size: 30px;
-                margin: 0 10px;
+            h2 {
+                color      : white;
+                text-align : center;
+                font-size  : 30px;
+                margin     : 0 10px;
                 font-weight: normal;
             }
 
             h4 {
-                color: white;
-                margin: auto;
-                max-width: 500px;
-                text-align: center; 
+                color      : white;
+                margin     : auto;
+                max-width  : 500px;
+                text-align : center;
                 font-weight: normal;
             }
-        
+
             .chipsClass {
-                background: transparent;
-                width: auto;
-                display: grid;
+                background           : transparent;
+                width                : auto;
+                display              : grid;
                 grid-template-columns: auto auto auto;
-                padding-top: 50px;
+                padding-top          : 50px;
 
                 .chipContClass {
                     background: white;
-                    margin: 30px;
-                    padding: 30px;
-                    width: auto;
+                    margin    : 30px;
+                    padding   : 30px;
+                    width     : auto;
 
                     div {
                         border: 2px solid #E41C66;
-                        width: 60px;
+                        width : 60px;
                         height: 70px;
                         margin: auto auto 15px auto;
                     }
@@ -94,20 +104,20 @@ body {
             }
         }
     }
-    
+
     .appLinkClass {
-        display: flex;
+        display       : flex;
         flex-direction: row;
-        margin: 0 auto;
-        width: 1000px;
+        margin        : 0 auto;
+        width         : 1000px;
 
         #logo {
             content: url(logo.png);
-            width: 200px;
+            width  : 200px;
         }
 
         div {
-            display: grid;
+            display           : grid;
             grid-template-rows: auto auto;
 
             span {
@@ -115,11 +125,11 @@ body {
             }
 
             a {
-               margin: auto auto;
+                margin: auto auto;
 
                 #playMarketLink {
                     content: url(appMarketLink.png);
-                    width: 100px;
+                    width  : 100px;
                 }
             }
         }
@@ -129,44 +139,44 @@ body {
         background-image: linear-gradient(to right, #FE9F6C, #E41C66);
 
         h2 {
-            color: white;
-            text-align: center;
+            color      : white;
+            text-align : center;
             font-weight: normal;
-            padding: 10px;
-            margin: 0;
+            padding    : 10px;
+            margin     : 0;
         }
     }
 
     .clientFormClass {
-        background-color: black; 
-        // background-image: url(formBckg.png);
+        background-color    : black;
+        // background-image : url(formBckg.png);
         // background-repeat: round;
 
         form {
 
             .formDivCl {
-                margin: 0 auto;
-                width: 500px;
-                padding: 15px 70px;
+                margin    : 0 auto;
+                width     : 500px;
+                padding   : 15px 70px;
                 background: #F2EDED;
 
                 .formContainer {
-                    display: flex;
+                    display       : flex;
                     flex-direction: column;
-                    margin: 5px;
-                    
+                    margin        : 5px;
+
                     #address {
                         min-height: 50px;
                         max-height: 50px;
-                        resize: none;
+                        resize    : none;
                     }
 
                     .imgViewCl {
                         display: grid;
 
-                        #imageViewer { 
-                            margin: 10px auto;
-                            max-width: 300px;
+                        #imageViewer {
+                            margin    : 10px auto;
+                            max-width : 300px;
                             max-height: 400px;
                         }
                     }
@@ -176,11 +186,13 @@ body {
                     }
 
                     input {
-                        border: none;
+                        border   : none;
                         font-size: 20px;
                     }
 
-                    input[type=file], input[type=time], input[type=number] {
+                    input[type=file],
+                    input[type=time],
+                    input[type=number] {
                         font-size: 14px;
                     }
 
@@ -191,29 +203,29 @@ body {
 
                 .coordinateContainer {
                     #map-canvas {
-                        width: 500px;
-                        height: 300px;
+                        width     : 500px;
+                        height    : 300px;
                         margin-top: 10px;
                     }
                 }
 
                 .timeContainer {
-                    display: grid;
+                    display              : grid;
                     grid-template-columns: auto auto;
                 }
 
                 .additionalClass {
-                    display: grid;
+                    display              : grid;
                     grid-template-columns: auto auto;
 
                     .checkClass {
                         background: white;
-                        margin: 5px;
+                        margin    : 5px;
 
                         .formContainer {
-                            display: flex;
+                            display       : flex;
                             flex-direction: row;
-                            margin-left: 30px;
+                            margin-left   : 30px;
 
                             label {
                                 width: 150px;
@@ -222,26 +234,26 @@ body {
                     }
 
                     .secondInfoClass {
-                        background: white;
-                        margin: 5px;
-                        display: grid;
+                        background        : white;
+                        margin            : 5px;
+                        display           : grid;
                         grid-template-rows: auto auto;
 
                         .liveMusicClass {
-                            margin: auto 0 auto 0;                       
+                            margin: auto 0 auto 0;
                         }
 
                         .formContainer {
-                            display: grid;
+                            display              : grid;
                             grid-template-columns: 2fr 1fr;
 
                             input {
-                                height: 20px;
-                                width: 65px;
+                                height    : 20px;
+                                width     : 65px;
                                 background: #F2EDED;
-                                margin: auto 0 auto 0;
+                                margin    : auto 0 auto 0;
                                 text-align: center;
-                                font-size: 14px;
+                                font-size : 14px;
                             }
 
                             input[type=number]::-webkit-inner-spin-button {
@@ -257,14 +269,14 @@ body {
 
                 .typesClass {
                     .numberContainer {
-                        display: grid;
+                        display              : grid;
                         grid-template-columns: 40px auto 110px 25px 25px;
-                        margin: 5px;
+                        margin               : 5px;
 
-                        input[type=text] { 
+                        input[type=text] {
                             margin: 0 10px;
                         }
-                        
+
                         input[type=checkbox] {
                             margin: auto;
                         }
@@ -276,45 +288,46 @@ body {
                     }
 
                     .typesContainer {
-                        display: flex;
+                        display       : flex;
                         flex-direction: row;
-                        margin-bottom: 5px;
+                        margin-bottom : 5px;
 
-                        select, input[type=text] {
+                        select,
+                        input[type=text] {
                             width: 200px;
                         }
 
                         button {
                             margin-left: 5px;
-                            width: 50px;
+                            width      : 50px;
                         }
                     }
 
                     .multiselect {
                         width: 200px;
-                    
+
                         .selectBox {
                             position: relative;
 
                             select {
-                                width: 100%;
-                                font-weight: bold;       
+                                width      : 100%;
+                                font-weight: bold;
                             }
 
                             .overSelect {
-                              position: absolute;
-                              left: 0;
-                              right: 0;
-                              top: 0;
-                              bottom: 0;
+                                position: absolute;
+                                left    : 0;
+                                right   : 0;
+                                top     : 0;
+                                bottom  : 0;
                             }
                         }
-                   
+
                         .checkboxes {
-                            width: 200px;
-                            display: none;
-                            border: 1px #dadada solid;
-                            position: absolute;
+                            width     : 200px;
+                            display   : none;
+                            border    : 1px #dadada solid;
+                            position  : absolute;
                             background: white;
 
                             label {
@@ -329,33 +342,33 @@ body {
                 }
 
                 .additInfoClass {
-                    display: flex;
+                    display       : flex;
                     flex-direction: column;
 
                     textarea {
                         margin-top: 5px;
-                        resize: none;
-                        width: auto;
-                        height: 50px;
+                        resize    : none;
+                        width     : auto;
+                        height    : 50px;
                     }
                 }
             }
-            
+
             .buttonCl {
                 display: grid;
                 padding: 20px 0 40px 0;
-                
+
                 button[type=submit] {
                     background-image: linear-gradient(to right, #FE9F6C, #E41C66);
-                    border: none;
-                    color: white;
-                    padding: 5px 50px;
-                    font-size: 20px;
-                    width: 200px;
-                    margin: 0 auto;
+                    border          : none;
+                    color           : white;
+                    padding         : 5px 50px;
+                    font-size       : 20px;
+                    width           : 200px;
+                    margin          : 0 auto;
                 }
             }
-            
+
         }
     }
 
@@ -363,11 +376,11 @@ body {
         background-image: linear-gradient(to right, #FE9F6C, #E41C66);
 
         h4 {
-            color: white;
-            text-align: center;
+            color      : white;
+            text-align : center;
             font-weight: normal;
-            margin: 0;
-            padding: 5px;
+            margin     : 0;
+            padding    : 5px;
         }
     }
 }
