@@ -7,13 +7,13 @@ class Phone {
 
 class Client {
     phones = [];
-    cuisinesIds = [];
+    cuisineIds = [];
     paymentTypeIds = [];
     clientTypeIds = [];
     mealTypeIds = [];
     socialLinks = [];
 
-    constructor(name, email, address, mainImage, lat, long, openTime, closeTime, isParking, isWifi, isLiveMusic, isOpenSpace, isChildrenZone, isBusinessLunch, additionalInfo, maxReserveDay, phones, cuisinesIds, paymentTypeIds, clientTypeIds, mealTypeIds, socialLinks) {
+    constructor(name, email, address, mainImage, lat, long, openTime, closeTime, isParking, isWifi, isLiveMusic, isOpenSpace, isChildrenZone, isBusinessLunch, additionalInfo, maxReserveDays, phones, cuisineIds, paymentTypeIds, clientTypeIds, mealTypeIds, socialLinks) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -28,10 +28,10 @@ class Client {
         this.isChildrenZone = isChildrenZone;
         this.isBusinessLunch = isBusinessLunch;
         this.additionalInfo = additionalInfo;
-        this.maxReserveDay = maxReserveDay;
+        this.maxReserveDays = maxReserveDays;
         this.phones = phones;
         this.isLiveMusic = isLiveMusic;
-        this.cuisinesIds = cuisinesIds;
+        this.cuisineIds = cuisineIds;
         this.paymentTypeIds = paymentTypeIds;
         this.clientTypeIds = clientTypeIds;
         this.mealTypeIds = mealTypeIds;
@@ -397,9 +397,9 @@ function save() {
         phones.push(new Phone("+994" + form.elements["number" + (i + 1)].value, form.elements["isShow" + (i + 1)].checked));
     }
 
-    var cuisinesIds = [];
+    var cuisineIds = [];
     for (var i = 0; i < cuisString.length; i++) {
-        cuisinesIds.push(getKeyByVal(cuisinesDict, cuisString[i]));
+        cuisineIds.push(getKeyByVal(cuisinesDict, cuisString[i]));
     }
 
     var paymentTypeIds = [];
@@ -446,7 +446,7 @@ function save() {
     var ctf = parseInt(ct.substring(0, 2)) * 60 + parseInt(ct.substring(3));
 
     var cl = new Client(form.elements["name"].value, form.elements["email"].value, form.elements["address"].value, form.elements["imageByteArr"].value, form.elements["lat"].value, form.elements["long"].value, otf, ctf, form.elements["isParking"].checked, form.elements["isWifi"].checked, lmV, form.elements["isOpenSpace"].checked, form.elements["isChildrenZone"].checked, 
-    form.elements["isBusinessLunch"].checked, form.elements["additionalInfo"].value, form.elements["maxReserveDay"].value, phones, cuisinesIds, paymentTypeIds, clientTypeIds, mealTypeIds, socialLinks);
+    form.elements["isBusinessLunch"].checked, form.elements["additionalInfo"].value, form.elements["maxReserveDays"].value, phones, cuisineIds, paymentTypeIds, clientTypeIds, mealTypeIds, socialLinks);
 
     var str = JSON.stringify(cl);
 
