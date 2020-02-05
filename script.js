@@ -446,7 +446,11 @@ function save() {
     var ctf = parseInt(ct.substring(0, 2)) * 60 + parseInt(ct.substring(3));
 
     var cl = new Client(form.elements["name"].value, form.elements["email"].value, form.elements["address"].value, form.elements["imageByteArr"].value, form.elements["lat"].value, form.elements["long"].value, otf, ctf, form.elements["isParking"].checked, form.elements["isWifi"].checked, lmV, form.elements["isOpenSpace"].checked, form.elements["isChildrenZone"].checked, 
+<<<<<<< HEAD
     form.elements["isBusinessLunch"].checked, form.elements["additionalInfo"].value, form.elements["maxReserveDays"].value, phones, cuisineIds, paymentTypeIds, clientTypeIds, mealTypeIds, socialLinks);
+=======
+    form.elements["isBusinessLunch"].checked, form.elements["additionalInfo"].value, form.elements["maxReserveDay"].value, phones, cuisineIds, paymentTypeIds, clientTypeIds, mealTypeIds, socialLinks);
+>>>>>>> 4d5afe61a844dbd9690ae7ea299bef9d327d5b26
 
     var str = JSON.stringify(cl);
 

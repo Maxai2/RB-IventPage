@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,45 +8,55 @@
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body onload="start()">
     <script src="script.js" type="text/javascript"></script>
     <div class="wrap">
 
         <div class="imgClass">
             <div class="startClass">
-                <h1>Name app</h1>
-                <span>About us</span>
+                <div class="imgCont">
+                    <img src="newView/logotyp_new-01.png">
+                </div>
                 <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                    of type and scrambled it to make a type specimen book.
                 </p>
-                
-                <a href="#">See more</a> 
+
+                <a href="#">See more</a>
                 <br><br>
-                
+
                 <button class="ctLets" type="button" onclick="scrollToForm()">Start</button>
             </div>
 
             <div class="chipsContainerClass">
                 <h2>Lorem ipsum dolor sit amet, consectetur adipscing elit</h2>
                 <h4>Lorem ipsum sit amet, consectetur adipscing elit amet, consectetur adipcing elit</h4>
-                
+
                 <div class="chipsClass">
                     <div class="chipContClass">
                         <div></div>
                         <span>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                            galley of type and scrambled it to make a type specimen book.
                         </span>
                     </div>
                     <div class="chipContClass">
                         <div></div>
                         <span>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                            galley of type and scrambled it to make a type specimen book.
                         </span>
                     </div>
                     <div class="chipContClass">
                         <div></div>
                         <span>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
+                            galley of type and scrambled it to make a type specimen book.
                         </span>
                     </div>
                 </div>
@@ -56,7 +67,9 @@
             <img id="logo">
             <div>
                 <span>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+                    and scrambled it to make a type specimen book.
                 </span>
                 <a href="#">
                     <img id="playMarketLink">
@@ -92,9 +105,9 @@
                             <div class="imgViewCl" style="display: none;" id="imgViewId">
                                 <img id="imageViewer" src="#" alt="image"></img>
                             </div>
-                        </div>                
+                        </div>
                     </div>
-                    <hr/>
+                    <hr />
                     <div class="coordinateContainer">
                         <input type="hidden" id="lat" name="lat">
                         <input type="hidden" id="long" name="long">
@@ -103,7 +116,7 @@
                             <button onclick="curLoc();" type="button">Current location</button>
                         </div>
                     </div>
-                    <hr/>
+                    <hr />
                     <div class="timeContainer">
                         <div class="formContainer">
                             <label>Open time: </label>
@@ -114,7 +127,7 @@
                             <input type="time" id="closeTime" name="closeTime" required>
                         </div>
                     </div>
-                    <hr/>
+                    <hr />
                     <div class="additionalClass">
                         <div class="checkClass">
                             <div class="formContainer">
@@ -149,10 +162,10 @@
                                     <input type="radio" name="isLiveMusic" value="false"> Background <br>
                                 </label>
                                 <label>
-                                    <input type="radio" name="isLiveMusic" value="true"> Live 
+                                    <input type="radio" name="isLiveMusic" value="true"> Live
                                 </label>
                             </div>
-                            
+
                             <div class="formContainer">
                                 <label>Max reserve day: </label>
                                 <input type="number" id="maxReserveDays" name="maxReserveDays" min="1" value="1" required>
@@ -178,7 +191,8 @@
                             <label>Сuisines: </label>
 
                             <div class="multiselect">
-                                <div class="selectBox" onclick="showCheckboxes('cuisCheckboxes', 'cuis')" id="cuisTitle">
+                                <div class="selectBox" onclick="showCheckboxes('cuisCheckboxes', 'cuis')"
+                                    id="cuisTitle">
                                     <select>
                                         <option id="cuisString">Select an option</option>
                                     </select>
@@ -193,7 +207,8 @@
                             <label>Payment type: </label>
 
                             <div class="multiselect">
-                                <div class="selectBox" onclick="showCheckboxes('payTypeCheckboxes', 'payT')" id="payTTitle">
+                                <div class="selectBox" onclick="showCheckboxes('payTypeCheckboxes', 'payT')"
+                                    id="payTTitle">
                                     <select>
                                         <option id="payTString">Select an option</option>
                                     </select>
@@ -208,7 +223,8 @@
                             <label>Restaurant type: </label>
 
                             <div class="multiselect">
-                                <div class="selectBox" onclick="showCheckboxes('resTypeCheckboxes', 'resT')" id="resTTitle">
+                                <div class="selectBox" onclick="showCheckboxes('resTypeCheckboxes', 'resT')"
+                                    id="resTTitle">
                                     <select>
                                         <option id="resTString">Select an option</option>
                                     </select>
@@ -223,7 +239,8 @@
                             <label>Meal type: </label>
 
                             <div class="multiselect">
-                                <div class="selectBox" onclick="showCheckboxes('mealTypeCheckboxes', 'mealT')" id="mealTTitle">
+                                <div class="selectBox" onclick="showCheckboxes('mealTypeCheckboxes', 'mealT')"
+                                    id="mealTTitle">
                                     <select>
                                         <option id="mealTString">Select an option</option>
                                     </select>
@@ -262,6 +279,8 @@
         <h4>@Copyright All right reserved</h5>
     </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA99t8a-S-OJffxtVvUfkLr3xKj8e_cWUo&callback=initMap"></script>
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA99t8a-S-OJffxtVvUfkLr3xKj8e_cWUo&callback=initMap"></script>
 </body>
+
 </html>
