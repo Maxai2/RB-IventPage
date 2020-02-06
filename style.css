@@ -1,7 +1,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif, normal;
 }
 body .noselect {
   -webkit-touch-callout: none;
@@ -20,8 +20,8 @@ body .noselect {
 }
 body .imgClass {
   background-image: url(newView/web-fon-01-01.jpg);
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-size: cover;
 }
 body .imgClass .startClass {
   margin-top: 200px;
@@ -46,57 +46,34 @@ body .imgClass .startClass .pabutCont a {
   margin-top: 10px;
 }
 body .imgClass .startClass .pabutCont button {
+  font-family: inherit;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 10px;
   background-color: transparent;
-  color: white;
-  padding: 5px 50px;
-  font-size: 20px;
-  margin-top: 50px;
 }
 body .imgClass .chipsContainerClass {
-  margin: 600px 330px 0 330px;
+  margin: 0 330px 0 330px;
 }
-body .imgClass .chipsContainerClass h2 {
+body .imgClass .chipsContainerClass h1 {
   color: white;
   text-align: center;
   font-size: 30px;
   margin: 0 10px;
   font-weight: normal;
 }
-body .imgClass .chipsContainerClass h4 {
-  color: white;
-  margin: auto;
-  max-width: 500px;
-  text-align: center;
-  font-weight: normal;
-}
-body .imgClass .chipsContainerClass .chipsClass {
-  background: transparent;
-  width: auto;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  padding-top: 50px;
-}
-body .imgClass .chipsContainerClass .chipsClass .chipContClass {
-  background: white;
-  margin: 30px;
-  padding: 30px;
-  width: auto;
-}
-body .imgClass .chipsContainerClass .chipsClass .chipContClass div {
-  border: 2px solid #E41C66;
-  width: 60px;
-  height: 70px;
-  margin: auto auto 15px auto;
-}
 body .appLinkClass {
   display: flex;
   flex-direction: row;
   margin: 0 auto;
   width: 1000px;
-}
-body .appLinkClass #logo {
-  content: url(logo.png);
-  width: 200px;
 }
 body .appLinkClass div {
   display: grid;
@@ -113,7 +90,7 @@ body .appLinkClass div a #playMarketLink {
   width: 100px;
 }
 body .clRegClass {
-  background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+  background-color: #E41C66;
 }
 body .clRegClass h2 {
   color: white;
@@ -288,7 +265,7 @@ body .clientFormClass form .buttonCl {
   padding: 20px 0 40px 0;
 }
 body .clientFormClass form .buttonCl button[type=submit] {
-  background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+  background-color: #E41C66;
   border: none;
   color: white;
   padding: 5px 50px;
@@ -297,7 +274,7 @@ body .clientFormClass form .buttonCl button[type=submit] {
   margin: 0 auto;
 }
 body .copyrightClass {
-  background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+  background-color: #E41C66;
 }
 body .copyrightClass h4 {
   color: white;
