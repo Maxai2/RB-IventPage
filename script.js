@@ -146,10 +146,41 @@ var maxLat = Math.atan(Math.sinh(Math.PI)) * 180 / Math.PI;
 var map;
 var marker;
 
+function changeChipPic(num) {
+    var img = document.getElementById("chipImg");
+
+    switch (num) {
+        case 1:
+            // img.style.opacity = 0.5;
+            img.setAttribute("src", "picsForHover/images.jfif");
+            break;
+        case 2:
+            // img.style.opacity = 1;
+            img.setAttribute("src", "picsForHover/download.jfif");
+            break;
+        case 3:
+            // img.style.opacity = 0.5;
+            img.setAttribute("src", "picsForHover/download (1).jfif");
+            break;
+        case 4:
+            // img.style.opacity = 1;
+            img.setAttribute("src", "picsForHover/download (2).jfif");
+            break;
+        case 5:
+            // img.style.opacity = 0.5;
+            img.setAttribute("src", "picsForHover/download (3).jfif");
+            break;
+        case 6:
+            // img.style.opacity = 1;
+            img.setAttribute("src", "picsForHover/download (4).jfif");
+            break;
+    }
+}
+
 function scrollToForm() {
     var elem = document.getElementById("clForm");
 
-    elem.scrollIntoView({block: "start", behavior: "smooth"});
+    elem.scrollIntoView({ block: "start", behavior: "smooth" });
 }
 
 function placeMarkerAndPanTo(latLng, map) {
@@ -158,7 +189,7 @@ function placeMarkerAndPanTo(latLng, map) {
         position: latLng,
         map: map
     });
-    
+
     document.getElementById('lat').value = latLng.lat();
     document.getElementById('long').value = latLng.lng();
 
@@ -196,28 +227,28 @@ function showLocation(position) {
     });
 
     marker.setMap(map);
-    
-    map.addListener('click', function(e) {
+
+    map.addListener('click', function (e) {
         placeMarkerAndPanTo(e.latLng, map);
     });
 }
 
-function curLoc() {    
+function curLoc() {
     initMap();
 }
 
 function errorHandler(err) {
-    if(err.code == 1) {
+    if (err.code == 1) {
         alert("Error: Access is denied!");
-    } else if( err.code == 2) {
+    } else if (err.code == 2) {
         alert("Error: Position is unavailable!");
     }
 }
 
 function initMap() {
-    if(navigator.geolocation){
+    if (navigator.geolocation) {
         // timeout at 60000 milliseconds (60 seconds)
-        var options = {timeout:60000};
+        var options = { timeout: 60000 };
         navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
     } else {
         alert("Sorry, browser does not support geolocation!");
@@ -238,25 +269,25 @@ var expMealT = false;
 function showCheckboxes(id, sw) {
     var checkboxes = document.getElementById(id);
 
-    switch(sw) {
+    switch (sw) {
         case 'cuis':
             checkboxes.style.display = !expCuis ? "block" : "none";
-        
+
             expCuis = !expCuis;
             break;
         case 'payT':
             checkboxes.style.display = !expPayT ? "block" : "none";
-        
+
             expPayT = !expPayT;
             break;
         case 'resT':
             checkboxes.style.display = !expResT ? "block" : "none";
-        
+
             expResT = !expResT;
             break;
         case 'mealT':
             checkboxes.style.display = !expMealT ? "block" : "none";
-        
+
             expMealT = !expMealT;
             break;
     }
@@ -269,12 +300,12 @@ var mealTypeString = [];
 
 function selBox(sel, arr, idForString, idForTitle) {
     sel.checked ? arr.push(sel.value) : arr.splice(arr.indexOf(sel.value), 1);
-    
+
     var workStr = document.getElementById(idForString);
     var title = document.getElementById(idForTitle);
     title.text = "";
     workStr.text = "";
-    
+
     for (var i = 0; i < arr.length; i++) {
         workStr.text += arr[i] + ";\xa0";
     }
@@ -282,7 +313,7 @@ function selBox(sel, arr, idForString, idForTitle) {
     if (workStr.text == "") {
         workStr.text = "Select an option";
         title.removeAttribute('title');
-    } else {   
+    } else {
         title.setAttribute('title', workStr.text);
     }
 }
@@ -303,8 +334,8 @@ function fillCheboxes(cbId, sDict, dict, type) {
         inp.setAttribute('id', dict[i].value);
         inp.setAttribute('value', dict[i].value);
 
-        switch(type) {
-            case 'cuis': 
+        switch (type) {
+            case 'cuis':
                 inp.setAttribute('onchange', "selBox(this, cuisString, 'cuisString',  'cuisTitle')");
                 break;
             case 'payT':
@@ -317,10 +348,10 @@ function fillCheboxes(cbId, sDict, dict, type) {
                 inp.setAttribute('onchange', "selBox(this, mealTypeString, 'mealTString', 'mealTTitle')");
                 break;
         }
-        
+
         var lbl = document.createElement('label');
         lbl.setAttribute('for', dict[i].value);
-        
+
         lbl.appendChild(inp);
         lbl.appendChild(document.createTextNode(dict[i++].value));
         lbl.setAttribute('class', 'noselect');
@@ -332,24 +363,24 @@ function fillCheboxes(cbId, sDict, dict, type) {
 function start() {
 
     fetch('https://rbwebapp.azurewebsites.net/api/parameter')
-    .then(response => response.json())
-    .then(arr => {
-        var cui = arr["cuisines"];
+        .then(response => response.json())
+        .then(arr => {
+            var cui = arr["cuisines"];
 
-        fillCheboxes('cuisCheckboxes', cui, cuisinesDict, 'cuis');
+            fillCheboxes('cuisCheckboxes', cui, cuisinesDict, 'cuis');
 
-        var pay = arr["paymentTypes"];
+            var pay = arr["paymentTypes"];
 
-        fillCheboxes('payTypeCheckboxes', pay, paymentTypeDict, 'payT');
+            fillCheboxes('payTypeCheckboxes', pay, paymentTypeDict, 'payT');
 
-        var res = arr["clientTypes"];
+            var res = arr["clientTypes"];
 
-        fillCheboxes('resTypeCheckboxes', res, restaurantTypeDict, 'resT');
-        
-        var mea = arr["mealTypes"];
+            fillCheboxes('resTypeCheckboxes', res, restaurantTypeDict, 'resT');
 
-        fillCheboxes('mealTypeCheckboxes', mea, mealTypeDict, 'mealT');
-    });
+            var mea = arr["mealTypes"];
+
+            fillCheboxes('mealTypeCheckboxes', mea, mealTypeDict, 'mealT');
+        });
 }
 
 function showPic(input) {
@@ -362,19 +393,19 @@ function showPic(input) {
     var fileReader = new FileReader();
 
     if (fileReader && fileList && fileList.length) {
-       fileReader.readAsArrayBuffer(fileList[0]);
-       fileReader.onload = function () {
-          var imageData = fileReader.result;
-          var binary = '';
+        fileReader.readAsArrayBuffer(fileList[0]);
+        fileReader.onload = function () {
+            var imageData = fileReader.result;
+            var binary = '';
 
-            var bytes = new Uint8Array( imageData );
+            var bytes = new Uint8Array(imageData);
             var len = bytes.byteLength;
             for (var i = 0; i < len; i++) {
-                binary += String.fromCharCode( bytes[ i ] );
+                binary += String.fromCharCode(bytes[i]);
             }
-            
-            document.getElementById('imageByteArr').value = window.btoa( binary );
-       };
+
+            document.getElementById('imageByteArr').value = window.btoa(binary);
+        };
     }
 }
 
@@ -393,7 +424,7 @@ function save() {
 
     var phones = [];
 
-    for(var i = 0; i < countNumbers; i++) {
+    for (var i = 0; i < countNumbers; i++) {
         phones.push(new Phone("+994" + form.elements["number" + (i + 1)].value, form.elements["isShow" + (i + 1)].checked));
     }
 
@@ -445,8 +476,8 @@ function save() {
     var ct = form.elements["closeTime"].value;
     var ctf = parseInt(ct.substring(0, 2)) * 60 + parseInt(ct.substring(3));
 
-    var cl = new Client(form.elements["name"].value, form.elements["email"].value, form.elements["address"].value, form.elements["imageByteArr"].value, form.elements["lat"].value, form.elements["long"].value, otf, ctf, form.elements["isParking"].checked, form.elements["isWifi"].checked, lmV, form.elements["isOpenSpace"].checked, form.elements["isChildrenZone"].checked, 
-    form.elements["isBusinessLunch"].checked, form.elements["additionalInfo"].value, form.elements["maxReserveDays"].value, phones, cuisineIds, paymentTypeIds, clientTypeIds, mealTypeIds, socialLinks);
+    var cl = new Client(form.elements["name"].value, form.elements["email"].value, form.elements["address"].value, form.elements["imageByteArr"].value, form.elements["lat"].value, form.elements["long"].value, otf, ctf, form.elements["isParking"].checked, form.elements["isWifi"].checked, lmV, form.elements["isOpenSpace"].checked, form.elements["isChildrenZone"].checked,
+        form.elements["isBusinessLunch"].checked, form.elements["additionalInfo"].value, form.elements["maxReserveDays"].value, phones, cuisineIds, paymentTypeIds, clientTypeIds, mealTypeIds, socialLinks);
 
     var str = JSON.stringify(cl);
 
@@ -454,21 +485,21 @@ function save() {
 
     (async () => {
         const rawResponse = await fetch('https://rbwebapp.azurewebsites.net/api/request', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: str
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: str
         });
         const content = await rawResponse.status;
-      
+
         console.log(content);
 
         if (content == 200) {
             alert('Your response was successfully sent!');
 
-            setTimeout(() => {}, 5000);
+            setTimeout(() => { }, 5000);
 
             document.location.reload(true);
         } else {
@@ -483,17 +514,17 @@ function addNumber() {
     }
 
     var divCont = document.getElementById("idNumberContainer");
-    
+
     var div = document.createElement('div');
     div.setAttribute('class', 'numberContainer');
     var divId = "divNum" + ++countNumbers;
     div.setAttribute('id', divId);
-    
+
     var label = document.createElement('label');
     label.textContent = "+994";
-    
+
     div.appendChild(label);
-    
+
     var input = document.createElement('input');
     input.type = "text";
     var numIN = "number" + countNumbers;

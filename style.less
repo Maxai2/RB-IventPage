@@ -1,364 +1,426 @@
-@mainColor: #E41C66;
+@mainColor: #e41c66;
 
 body {
-    margin     : 0;
-    padding    : 0;
-    font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif, normal;
+  margin: 0;
+  padding: 0;
+  font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif, normal;
 
-    .noselect {
-        -webkit-touch-callout: none;
-        /* iOS Safari */
-        -webkit-user-select: none;
-        /* Safari */
-        -khtml-user-select: none;
-        /* Konqueror HTML */
-        -moz-user-select: none;
-        /* Old versions of Firefox */
-        -ms-user-select: none;
-        /* Internet Explorer/Edge */
-        user-select: none;
-        /* Non-prefixed version, currently
+  .noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
                                         supported by Chrome, Opera and Firefox */
-    }
+  }
 
-    .imgClass {
-        background-image : url(newView/web-fon-01-01.jpg);
-        background-size  : 100% 100%;
-        background-repeat: no-repeat;
+  .imgClass {
+    background-image: url(newView/web-fon-01-01.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 
-        .startClass {
-            margin-top    : 200px;
-            margin-left   : 150px;
-            display       : flex;
-            flex-direction: row;
+    .startClass {
+      margin-top: 200px;
+      margin-left: 150px;
+      display: flex;
+      flex-direction: row;
 
-            .imgCont {
-                margin-right: 60px;
+      .imgCont {
+        margin-right: 60px;
 
-                img {
-                    width: 150px;
-                }
-            }
+        img {
+          width: 150px;
+        }
+      }
 
-            .pabutCont {
-                p {
-                    width : 500px;
-                    margin: 0;
-                }
-
-                a {
-                    color          : black;
-                    border-bottom  : 1px solid black;
-                    text-decoration: none;
-                    margin-top     : 10px;
-                }
-
-                button {
-                    font-family     : inherit;
-                    border          : none;
-                    color           : black;
-                    padding         : 15px 32px;
-                    text-align      : center;
-                    text-decoration : none;
-                    display         : inline-block;
-                    font-size       : 16px;
-                    margin          : 4px 2px;
-                    cursor          : pointer;
-                    border-radius   : 10px;
-                    background-color: transparent;
-                }
-            }
+      .pabutCont {
+        p {
+          width: 500px;
+          margin: 0;
         }
 
-        .chipsContainerClass {
-            margin: 0 330px 0 330px;
-
-            h1 {
-                color      : white;
-                text-align : center;
-                font-size  : 30px;
-                margin     : 0 10px;
-                font-weight: normal;
-            }
-
+        a {
+          color: black;
+          border-bottom: 1px solid black;
+          text-decoration: none;
+          margin-top: 10px;
         }
+
+        button {
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            border: 1px solid #555555;
+            border-radius: 10px;
+            margin-top: 70px;
+            font-family: inherit;
+            padding: 1px 30px;
+            font-size: 25px;
+
+            &:hover {
+                background-color: #555555;
+                color: white;
+            }
+        }
+      }
     }
 
-    .appLinkClass {
-        display       : flex;
-        flex-direction: row;
-        margin        : 0 auto;
-        width         : 1000px;
+    .chipsContainerClass {
+      margin: 500px 100px 0 100px;
 
-        div {
-            display           : grid;
+      h1 {
+        color: white;
+        text-align: center;
+        font-size: 60px;
+        margin: 30px 0;
+        font-weight: normal;
+      }
+
+      .chipsGridCont {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr 1.5fr 1fr;
+
+        p {
+          padding: 0;
+          margin: 0;
+          cursor: pointer;
+
+          // &:hover {
+
+          // }
+        }
+
+        .chipsLeftCont {
+          grid-column: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+        }
+
+        .chipsImgCont {
+          grid-column: 2;
+          display: grid;
+          position: relative;
+
+          img {
+            margin: 0 auto;
+            height: 500px;
+          }
+
+          #chipImg {
+            height: 300px;
+            width: 150px;
+            position: absolute;
+            top: 100px;
+            right: 0;
+            left: 0;
+            -webkit-transition: opacity 1s ease-in-out;
+            -moz-transition: opacity 1s ease-in-out;
+            -o-transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out ;
+          }
+        }
+
+        .chipsRightCont {
+          grid-column: 3;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+        }
+      }
+    }
+  }
+
+  .appLinkClass {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 100px;
+
+    div {
+      display: grid;
+      grid-template-columns: auto auto;
+
+      p {
+        margin-right: 30px;
+      }
+
+      div {
+        margin: auto;
+
+        img {
+          width: 150px;
+        }
+      }
+    }
+  }
+
+  .friendsPicCont {
+    display: grid;
+
+    img {
+      margin: auto;
+    }
+  }
+
+  .clRegClass {
+    // background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+    background-color: @mainColor;
+
+    h2 {
+      color: white;
+      text-align: center;
+      font-weight: normal;
+      padding: 10px;
+      margin: 0;
+    }
+  }
+
+  .clientFormClass {
+    background-color: black;
+    // background-image : url(formBckg.png);
+    // background-repeat: round;
+
+    form {
+      .formDivCl {
+        margin: 0 auto;
+        width: 500px;
+        padding: 15px 70px;
+        background: #f2eded;
+
+        .formContainer {
+          display: flex;
+          flex-direction: column;
+          margin: 5px;
+
+          #address {
+            min-height: 50px;
+            max-height: 50px;
+            resize: none;
+          }
+
+          .imgViewCl {
+            display: grid;
+
+            #imageViewer {
+              margin: 10px auto;
+              max-width: 300px;
+              max-height: 400px;
+            }
+          }
+
+          label {
+            margin-bottom: 10px;
+          }
+
+          input {
+            border: none;
+            font-size: 20px;
+          }
+
+          input[type="file"],
+          input[type="time"],
+          input[type="number"] {
+            font-size: 14px;
+          }
+
+          input[type="text"] {
+            width: auto;
+          }
+        }
+
+        .coordinateContainer {
+          #map-canvas {
+            width: 500px;
+            height: 300px;
+            margin-top: 10px;
+          }
+        }
+
+        .timeContainer {
+          display: grid;
+          grid-template-columns: auto auto;
+        }
+
+        .additionalClass {
+          display: grid;
+          grid-template-columns: auto auto;
+
+          .checkClass {
+            background: white;
+            margin: 5px;
+
+            .formContainer {
+              display: flex;
+              flex-direction: row;
+              margin-left: 30px;
+
+              label {
+                width: 150px;
+              }
+            }
+          }
+
+          .secondInfoClass {
+            background: white;
+            margin: 5px;
+            display: grid;
             grid-template-rows: auto auto;
 
-            span {
-                margin-top: 30px;
+            .liveMusicClass {
+              margin: auto 0 auto 0;
             }
 
-            a {
-                margin: auto auto;
+            .formContainer {
+              display: grid;
+              grid-template-columns: 2fr 1fr;
 
-                #playMarketLink {
-                    content: url(appMarketLink.png);
-                    width  : 100px;
-                }
+              input {
+                height: 20px;
+                width: 65px;
+                background: #f2eded;
+                margin: auto 0 auto 0;
+                text-align: center;
+                font-size: 14px;
+              }
+
+              input[type="number"]::-webkit-inner-spin-button {
+                opacity: 1;
+              }
+
+              label {
+                margin: auto 0 auto 0;
+              }
             }
+          }
         }
-    }
 
-    .clRegClass {
-        // background-image: linear-gradient(to right, #FE9F6C, #E41C66);
-        background-color   : @mainColor;
+        .typesClass {
+          .numberContainer {
+            display: grid;
+            grid-template-columns: 40px auto 110px 25px 25px;
+            margin: 5px;
 
-        h2 {
-            color      : white;
-            text-align : center;
-            font-weight: normal;
-            padding    : 10px;
-            margin     : 0;
-        }
-    }
-
-    .clientFormClass {
-        background-color    : black;
-        // background-image : url(formBckg.png);
-        // background-repeat: round;
-
-        form {
-
-            .formDivCl {
-                margin    : 0 auto;
-                width     : 500px;
-                padding   : 15px 70px;
-                background: #F2EDED;
-
-                .formContainer {
-                    display       : flex;
-                    flex-direction: column;
-                    margin        : 5px;
-
-                    #address {
-                        min-height: 50px;
-                        max-height: 50px;
-                        resize    : none;
-                    }
-
-                    .imgViewCl {
-                        display: grid;
-
-                        #imageViewer {
-                            margin    : 10px auto;
-                            max-width : 300px;
-                            max-height: 400px;
-                        }
-                    }
-
-                    label {
-                        margin-bottom: 10px;
-                    }
-
-                    input {
-                        border   : none;
-                        font-size: 20px;
-                    }
-
-                    input[type=file],
-                    input[type=time],
-                    input[type=number] {
-                        font-size: 14px;
-                    }
-
-                    input[type=text] {
-                        width: auto;
-                    }
-                }
-
-                .coordinateContainer {
-                    #map-canvas {
-                        width     : 500px;
-                        height    : 300px;
-                        margin-top: 10px;
-                    }
-                }
-
-                .timeContainer {
-                    display              : grid;
-                    grid-template-columns: auto auto;
-                }
-
-                .additionalClass {
-                    display              : grid;
-                    grid-template-columns: auto auto;
-
-                    .checkClass {
-                        background: white;
-                        margin    : 5px;
-
-                        .formContainer {
-                            display       : flex;
-                            flex-direction: row;
-                            margin-left   : 30px;
-
-                            label {
-                                width: 150px;
-                            }
-                        }
-                    }
-
-                    .secondInfoClass {
-                        background        : white;
-                        margin            : 5px;
-                        display           : grid;
-                        grid-template-rows: auto auto;
-
-                        .liveMusicClass {
-                            margin: auto 0 auto 0;
-                        }
-
-                        .formContainer {
-                            display              : grid;
-                            grid-template-columns: 2fr 1fr;
-
-                            input {
-                                height    : 20px;
-                                width     : 65px;
-                                background: #F2EDED;
-                                margin    : auto 0 auto 0;
-                                text-align: center;
-                                font-size : 14px;
-                            }
-
-                            input[type=number]::-webkit-inner-spin-button {
-                                opacity: 1;
-                            }
-
-                            label {
-                                margin: auto 0 auto 0;
-                            }
-                        }
-                    }
-                }
-
-                .typesClass {
-                    .numberContainer {
-                        display              : grid;
-                        grid-template-columns: 40px auto 110px 25px 25px;
-                        margin               : 5px;
-
-                        input[type=text] {
-                            margin: 0 10px;
-                        }
-
-                        input[type=checkbox] {
-                            margin: auto;
-                        }
-
-                        button {
-                            box-sizing: border-box;
-                        }
-
-                    }
-
-                    .typesContainer {
-                        display       : flex;
-                        flex-direction: row;
-                        margin-bottom : 5px;
-
-                        select,
-                        input[type=text] {
-                            width: 200px;
-                        }
-
-                        button {
-                            margin-left: 5px;
-                            width      : 50px;
-                        }
-                    }
-
-                    .multiselect {
-                        width: 200px;
-
-                        .selectBox {
-                            position: relative;
-
-                            select {
-                                width      : 100%;
-                                font-weight: bold;
-                            }
-
-                            .overSelect {
-                                position: absolute;
-                                left    : 0;
-                                right   : 0;
-                                top     : 0;
-                                bottom  : 0;
-                            }
-                        }
-
-                        .checkboxes {
-                            width     : 200px;
-                            display   : none;
-                            border    : 1px #dadada solid;
-                            position  : absolute;
-                            background: white;
-
-                            label {
-                                display: block;
-                            }
-
-                            label:hover {
-                                background-color: #1e90ff;
-                            }
-                        }
-                    }
-                }
-
-                .additInfoClass {
-                    display       : flex;
-                    flex-direction: column;
-
-                    textarea {
-                        margin-top: 5px;
-                        resize    : none;
-                        width     : auto;
-                        height    : 50px;
-                    }
-                }
+            input[type="text"] {
+              margin: 0 10px;
             }
 
-            .buttonCl {
-                display: grid;
-                padding: 20px 0 40px 0;
-
-                button[type=submit] {
-                    // background-image: linear-gradient(to right, #FE9F6C, #E41C66);
-                    background-color   : @mainColor;
-
-                    border   : none;
-                    color    : white;
-                    padding  : 5px 50px;
-                    font-size: 20px;
-                    width    : 200px;
-                    margin   : 0 auto;
-                }
+            input[type="checkbox"] {
+              margin: auto;
             }
 
-        }
-    }
+            button {
+              box-sizing: border-box;
+            }
+          }
 
-    .copyrightClass {
-        // background-image: linear-gradient(to right, #FE9F6C, #E41C66);
-        background-color   : @mainColor;
+          .typesContainer {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 5px;
 
-        h4 {
-            color      : white;
-            text-align : center;
-            font-weight: normal;
-            margin     : 0;
-            padding    : 5px;
+            select,
+            input[type="text"] {
+              width: 200px;
+            }
+
+            button {
+              margin-left: 5px;
+              width: 50px;
+            }
+          }
+
+          .multiselect {
+            width: 200px;
+
+            .selectBox {
+              position: relative;
+
+              select {
+                width: 100%;
+                font-weight: bold;
+              }
+
+              .overSelect {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+              }
+            }
+
+            .checkboxes {
+              width: 200px;
+              display: none;
+              border: 1px #dadada solid;
+              position: absolute;
+              background: white;
+
+              label {
+                display: block;
+              }
+
+              label:hover {
+                background-color: #1e90ff;
+              }
+            }
+          }
         }
+
+        .additInfoClass {
+          display: flex;
+          flex-direction: column;
+
+          textarea {
+            margin-top: 5px;
+            resize: none;
+            width: auto;
+            height: 50px;
+          }
+        }
+      }
+
+      .buttonCl {
+        display: grid;
+        padding: 20px 0 40px 0;
+
+        button[type="submit"] {
+          // background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+          background-color: @mainColor;
+
+          border: none;
+          color: white;
+          padding: 5px 50px;
+          font-size: 20px;
+          width: 200px;
+          margin: 0 auto;
+        }
+      }
     }
+  }
+
+  .copyrightClass {
+    // background-image: linear-gradient(to right, #FE9F6C, #E41C66);
+    background-color: @mainColor;
+
+    h4 {
+      color: white;
+      text-align: center;
+      font-weight: normal;
+      margin: 0;
+      padding: 5px;
+    }
+  }
 }

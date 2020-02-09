@@ -46,51 +46,103 @@ body .imgClass .startClass .pabutCont a {
   margin-top: 10px;
 }
 body .imgClass .startClass .pabutCont button {
-  font-family: inherit;
-  border: none;
-  color: black;
-  padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  transition-duration: 0.4s;
   cursor: pointer;
+  background-color: white;
+  color: black;
+  border: 1px solid #555555;
   border-radius: 10px;
-  background-color: transparent;
+  margin-top: 70px;
+  font-family: inherit;
+  padding: 1px 30px;
+  font-size: 25px;
+}
+body .imgClass .startClass .pabutCont button:hover {
+  background-color: #555555;
+  color: white;
 }
 body .imgClass .chipsContainerClass {
-  margin: 0 330px 0 330px;
+  margin: 500px 100px 0 100px;
 }
 body .imgClass .chipsContainerClass h1 {
   color: white;
   text-align: center;
-  font-size: 30px;
-  margin: 0 10px;
+  font-size: 60px;
+  margin: 30px 0;
   font-weight: normal;
+}
+body .imgClass .chipsContainerClass .chipsGridCont {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr 1.5fr 1fr;
+}
+body .imgClass .chipsContainerClass .chipsGridCont p {
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+body .imgClass .chipsContainerClass .chipsGridCont .chipsLeftCont {
+  grid-column: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+body .imgClass .chipsContainerClass .chipsGridCont .chipsImgCont {
+  grid-column: 2;
+  display: grid;
+  position: relative;
+}
+body .imgClass .chipsContainerClass .chipsGridCont .chipsImgCont img {
+  margin: 0 auto;
+  height: 500px;
+}
+body .imgClass .chipsContainerClass .chipsGridCont .chipsImgCont #chipImg {
+  height: 300px;
+  width: 150px;
+  position: absolute;
+  top: 100px;
+  right: 0;
+  left: 0;
+  -webkit-transition: opacity 1s ease-in-out;
+  -moz-transition: opacity 1s ease-in-out;
+  -o-transition: opacity 1s ease-in-out;
+  transition: opacity 1s ease-in-out;
+}
+body .imgClass .chipsContainerClass .chipsGridCont .chipsRightCont {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 body .appLinkClass {
   display: flex;
   flex-direction: row;
-  margin: 0 auto;
-  width: 1000px;
+  margin: 20px 100px;
 }
 body .appLinkClass div {
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-columns: auto auto;
 }
-body .appLinkClass div span {
-  margin-top: 30px;
+body .appLinkClass div p {
+  margin-right: 30px;
 }
-body .appLinkClass div a {
-  margin: auto auto;
+body .appLinkClass div div {
+  margin: auto;
 }
-body .appLinkClass div a #playMarketLink {
-  content: url(appMarketLink.png);
-  width: 100px;
+body .appLinkClass div div img {
+  width: 150px;
+}
+body .friendsPicCont {
+  display: grid;
+}
+body .friendsPicCont img {
+  margin: auto;
 }
 body .clRegClass {
-  background-color: #E41C66;
+  background-color: #e41c66;
 }
 body .clRegClass h2 {
   color: white;
@@ -106,7 +158,7 @@ body .clientFormClass form .formDivCl {
   margin: 0 auto;
   width: 500px;
   padding: 15px 70px;
-  background: #F2EDED;
+  background: #f2eded;
 }
 body .clientFormClass form .formDivCl .formContainer {
   display: flex;
@@ -133,12 +185,12 @@ body .clientFormClass form .formDivCl .formContainer input {
   border: none;
   font-size: 20px;
 }
-body .clientFormClass form .formDivCl .formContainer input[type=file],
-body .clientFormClass form .formDivCl .formContainer input[type=time],
-body .clientFormClass form .formDivCl .formContainer input[type=number] {
+body .clientFormClass form .formDivCl .formContainer input[type="file"],
+body .clientFormClass form .formDivCl .formContainer input[type="time"],
+body .clientFormClass form .formDivCl .formContainer input[type="number"] {
   font-size: 14px;
 }
-body .clientFormClass form .formDivCl .formContainer input[type=text] {
+body .clientFormClass form .formDivCl .formContainer input[type="text"] {
   width: auto;
 }
 body .clientFormClass form .formDivCl .coordinateContainer #map-canvas {
@@ -182,12 +234,12 @@ body .clientFormClass form .formDivCl .additionalClass .secondInfoClass .formCon
 body .clientFormClass form .formDivCl .additionalClass .secondInfoClass .formContainer input {
   height: 20px;
   width: 65px;
-  background: #F2EDED;
+  background: #f2eded;
   margin: auto 0 auto 0;
   text-align: center;
   font-size: 14px;
 }
-body .clientFormClass form .formDivCl .additionalClass .secondInfoClass .formContainer input[type=number]::-webkit-inner-spin-button {
+body .clientFormClass form .formDivCl .additionalClass .secondInfoClass .formContainer input[type="number"]::-webkit-inner-spin-button {
   opacity: 1;
 }
 body .clientFormClass form .formDivCl .additionalClass .secondInfoClass .formContainer label {
@@ -198,10 +250,10 @@ body .clientFormClass form .formDivCl .typesClass .numberContainer {
   grid-template-columns: 40px auto 110px 25px 25px;
   margin: 5px;
 }
-body .clientFormClass form .formDivCl .typesClass .numberContainer input[type=text] {
+body .clientFormClass form .formDivCl .typesClass .numberContainer input[type="text"] {
   margin: 0 10px;
 }
-body .clientFormClass form .formDivCl .typesClass .numberContainer input[type=checkbox] {
+body .clientFormClass form .formDivCl .typesClass .numberContainer input[type="checkbox"] {
   margin: auto;
 }
 body .clientFormClass form .formDivCl .typesClass .numberContainer button {
@@ -213,7 +265,7 @@ body .clientFormClass form .formDivCl .typesClass .typesContainer {
   margin-bottom: 5px;
 }
 body .clientFormClass form .formDivCl .typesClass .typesContainer select,
-body .clientFormClass form .formDivCl .typesClass .typesContainer input[type=text] {
+body .clientFormClass form .formDivCl .typesClass .typesContainer input[type="text"] {
   width: 200px;
 }
 body .clientFormClass form .formDivCl .typesClass .typesContainer button {
@@ -264,8 +316,8 @@ body .clientFormClass form .buttonCl {
   display: grid;
   padding: 20px 0 40px 0;
 }
-body .clientFormClass form .buttonCl button[type=submit] {
-  background-color: #E41C66;
+body .clientFormClass form .buttonCl button[type="submit"] {
+  background-color: #e41c66;
   border: none;
   color: white;
   padding: 5px 50px;
@@ -274,7 +326,7 @@ body .clientFormClass form .buttonCl button[type=submit] {
   margin: 0 auto;
 }
 body .copyrightClass {
-  background-color: #E41C66;
+  background-color: #e41c66;
 }
 body .copyrightClass h4 {
   color: white;
